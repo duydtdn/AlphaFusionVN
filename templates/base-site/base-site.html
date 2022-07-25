@@ -1,12 +1,16 @@
+{% load cms_tags menu_tags sekizai_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>{% block page_title %}{% endblock %}</title>
+    {% render_block "css" %}
     {% block css_js_default_head %}{% endblock %}
     {% block css_js_lib_head %}{% endblock %}
     {% block css_js_custom_head %}{% endblock %}
+    {% render_block "css" %}
 </head>
-<body>
+<body class="page">
+{% cms_toolbar %}
 <!-- Preloader -->
 <div class="preloader">
     <div class="spinner-dots">
@@ -23,6 +27,6 @@
 {% block js_default_foot %}{% endblock %}
 {% block js_lib_foot %}{% endblock %}
 {% block js_custom_foot %}{% endblock %}
-
+{% render_block "js" %}
 </body>
 </html>

@@ -1,0 +1,34 @@
+
+        {% if menu.children %}
+            <div class="dropdown-menu dropdown">
+            {% for child in menu.children.all %}
+                <div class="nav-item ">
+                <a href="blog.html" class="dropdown-item">{{ child.menu }}</a>
+                </div>
+{#                {% if child.children %}#}
+{#                    {% for sub in child.children.all %}#}
+{#                        <a href="blog.html" class="dropdown-item">{{ sub.menu }}</a>#}
+                        {% with menu=sub template_name="modules/recursive_menu.html" %}
+                            {% include template_name %}
+                        {% endwith %}
+{#                    {% endfor %}#}
+{#                {% endif %}#}
+            {% endfor %}
+            </div>
+        {% endif %}
+
+{#<li class="menu-item">#}
+{#    <a class="menu-link" href="#">#}
+{#        <span class="title">{{ menu.menu }}</span>#}
+{#        <span class="arrow"></span>#}
+{#    </a>#}
+{#    {% if menu.children %}#}
+{#        <ul class="menu-sub-submenu">#}
+{#        {% for child in menu.children.all %}#}
+{#            {%with menu=child template_name="modules/recursive_menu.html" %}#}
+{#                {%include template_name%}#}
+{#            {%endwith%}#}
+{#        {% endfor %}#}
+{#        </ul>#}
+{#    {% endif %}#}
+{#</li>#}

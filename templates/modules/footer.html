@@ -6,10 +6,10 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="footer-contact">
-                            <h2>Our Head Office</h2>
-                            <p><i class="fa fa-map-marker-alt"></i>123 Street, New York, USA</p>
-                            <p><i class="fa fa-phone-alt"></i>+012 345 67890</p>
-                            <p><i class="fa fa-envelope"></i>info@example.com</p>
+                            <h2>Trụ sở:</h2>
+                            <p><i class="fa fa-map-marker-alt"></i>15 Quang Trung, TP. Đà Nẵng</p>
+                            <p><i class="fa fa-phone-alt"></i>+84 905777699</p>
+                            <p><i class="fa fa-envelope"></i>info@aiiot.com.vn</p>
                             <div class="footer-social">
                                 <a href=""><i class="fab fa-twitter"></i></a>
                                 <a href=""><i class="fab fa-facebook-f"></i></a>
@@ -33,15 +33,20 @@
             </div>
             <div class="col-lg-5">
                 <div class="footer-newsletter">
-                    <h2>Newsletter</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet elit. Quisque eu lectus a leo dictum nec non quam. Tortor eu placerat
-                        rhoncus, lorem quam iaculis felis, sed lacus neque id eros.
-                    </p>
-                    <div class="form">
-                        <input class="form-control" placeholder="Email goes here">
-                        <button class="btn">Submit</button>
-                    </div>
+                    <h2>Tìm kiếm</h2>
+                    {#                    <p>#}
+                    {#                        Lorem ipsum dolor sit amet elit. Quisque eu lectus a leo dictum nec non quam. Tortor eu placerat#}
+                    {#                        rhoncus, lorem quam iaculis felis, sed lacus neque id eros.#}
+                    {#                    </p>#}
+                    <form class="form-inline" id="search-form" action="{% url 'aiiotweb:rq-search-by-keyword' %}" method="get">
+                        <i id="search-icon" class="fas fa-search" aria-hidden="true"></i>
+                        <input id="user-input" class="form-control form-control-sm ml-3 w-75" type="text"
+                               placeholder="Search" aria-label="Search" name="q">
+                    </form>
+{#                    <div class="form" id="search-form">#}
+{#                        <input id="user-input" class="form-control" placeholder="Search">#}
+{#                        <button class="btn">Submit</button>#}
+{#                    </div>#}
                 </div>
             </div>
         </div>
@@ -49,10 +54,10 @@
     <div class="container copyright">
         <div class="row">
             <div class="col-md-6">
-                <p>&copy; <a href="#">Your Site Name</a>, All Right Reserved.</p>
+                <p>&copy; <a href="#">2020</a>, Bản quyền thuộc Công ty Cổ phần AIIOT.</p>
             </div>
             <div class="col-md-6">
-                <p>Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
+                <p>Designed By <a href="https://htmlcodex.com">AIIOT</a></p>
             </div>
         </div>
     </div>

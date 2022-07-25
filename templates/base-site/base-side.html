@@ -2,17 +2,18 @@
 {% load static %}
 
 {% block page_title %}
-    Alpha Fusion Viet Nam
+    AIIOT Group
 {% endblock %}
 
 {% block css_js_default_head %}
     <meta charset="utf-8">
+    <title>AIIOT - Creative to lead</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Consulting Website Template Free Download" name="keywords">
     <meta content="Consulting Website Template Free Download" name="description">
 
     <!-- Favicon -->
-    <link href="{% static 'img/favicon.ico' %}" rel="icon">
+{#    <link href="{% static 'img/favicon.ico' %}" rel="icon">#}
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato&family=Oswald:wght@200;300;400&display=swap"
@@ -25,7 +26,10 @@
     <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
+    {#    <link href="{% static 'css/core.min.css' %}" rel="stylesheet">#}
+    {#    <link href="{% static 'css/app.min.css' %}" rel="stylesheet">#}
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
 {% endblock %}
 {% block topbar %}
     {% include 'modules/topbar.html' %}
@@ -50,9 +54,19 @@
 
     <!-- Contact Javascript File -->
     <script src="{% static 'mail/jqBootstrapValidation.min.js' %}"></script>
-    <script src="{% static 'mail/contact.js' %}"></script>
+    {#    <script src="{% static 'mail/contact.js' %}"></script>#}
 
     <!-- Template Javascript -->
     <script src="{% static 'js/main.js' %}"></script>
+    {#    <script src="{% static 'js/custom_js.js' %}"></script>#}
+    {#    <script type="text/javascript" src="{% static "js/custom_js.js" %}"></script>#}
+    <script>
+        $(document).ready(function () {
+            $("a.scrollLink").click(function (event) {
+                event.preventDefault();
+                $("html, body").animate({scrollTop: $($(this).attr("href")).offset().top}, 500);
+            });
+        });
+    </script>
 {% endblock %}
 

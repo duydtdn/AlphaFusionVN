@@ -1,0 +1,108 @@
+{% load static %}
+{% static "" as baseUrl %}
+{% if news %}
+    <!-- Single Page Start -->
+    <div class="single mt-125">
+        <div class="container">
+            {% for foo in news %}
+                <div class="section-header">
+                    <p>{{ foo.tieu_de }}</p>
+                    <h2>{{ foo.trich_yeu }}</h2>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        {#                <img src="/media/{{ foo.hinh_anh }}" alt="Image">#}
+                        {#                <h5>{{ foo.trich_yeu }}</h5>#}
+                        <p>
+                            {{ foo.noi_dung |safe }}
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Single Page End -->
+{% elif news_by_category %}
+    <div class="blog blog-page mt-125">
+        <div class="container">
+            <div class="section-header">
+                <p>Consulting Blog</p>
+                <h2>Latest From Our Consulting Blog</h2>
+            </div>
+            <div class="row">
+                {% csrf_token %}
+                {% for news in news_by_category %}
+                    <div class="col-md-6">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <img src="{{ baseUrl }}media/{{ news.hinh_anh }}" alt="Blog">
+                            </div>
+                            <div class="blog-content">
+                                <h2 class="blog-title">{{ news.tieu_de }}</h2>
+                                <div class="blog-meta">
+                                    <i class="fa fa-list-alt"></i>
+                                    <a href="">Category</a>
+                                    <i class="fa fa-calendar-alt"></i>
+                                    <p>{{ news.ngay_dang }}</p>
+                                </div>
+                                <div class="blog-text">
+                                    <p class="trich_yeu">
+                                        {{ news.trich_yeu }}
+                                    </p>
+                                    <a class="btn" href="{{ news.get_absolute_url }}">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if news_by_category.has_other_pages %}
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        {% if news_by_category.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link"
+                                   href="?page={{ news_by_category.previous_page_number }}">Previous</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                            </li>
+                        {% endif %}
+                        {% for i in news_by_category.paginator.page_range %}
+                            {% if news_by_category.number == i %}
+                                <li class="page-item active" aria-current="page">
+                                    <span class="page-link">{{ i }}
+                                        <span class="sr-only">(current)</span>
+                                    </span>
+                                </li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if news_by_category.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ news_by_category.next_page_number }}">Next</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            {% endif %}
+        </div>
+    </div>
+
+{% else %}
+    <div class="blog blog-page mt-125">
+        <div class="container">
+            <div class="section-header">
+                <p>Consulting Blog</p>
+                <h2>Không tìm thấy dữ liệu</h2>
+            </div>
+        </div>
+    </div>
+{% endif %}
+

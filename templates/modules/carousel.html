@@ -1,12 +1,13 @@
 <!-- Carousel Start -->
 {% load static %}
+{% static "" as baseUrl %}
 <div class="carousel">
     <div class="container-fluid">
         <div class="owl-carousel">
             {% for carousel in list_carousel %}
             <div class="carousel-item">
                 <div class="carousel-img">
-                    <img src="/media/{{ carousel.hinh_anh }}" alt="Image">
+                    <img src="{{ baseUrl }}media/{{ carousel.hinh_anh }}" alt="Image">
                 </div>
                 <div class="carousel-text">
                     <h1>{{ carousel.chu_de}}</h1>
@@ -24,4 +25,4 @@
         </div>
     </div>
 </div>
-<!-- Carousel End -->
+<!-- Carousel Endd -->
