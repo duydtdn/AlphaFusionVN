@@ -1,0 +1,27 @@
+<!-- Carousel Start -->
+{% load static %}
+<div class="carousel">
+    <div class="container-fluid">
+        <div class="owl-carousel">
+            {% for carousel in list_carousel %}
+            <div class="carousel-item">
+                <div class="carousel-img">
+                    <img src="/media/{{ carousel.hinh_anh }}" alt="Image">
+                </div>
+                <div class="carousel-text">
+                    <h1>{{ carousel.chu_de}}</h1>
+                    <p>
+                        {{ carousel.noi_dung | striptags }}
+                    </p>
+                    <div class="carousel-btn">
+                        <a class="btn" href="{{ carousel.link }}"><i class="fa fa-link"></i>Get Started</a>
+                        <a class="btn btn-play" data-toggle="modal" data-src="https://www.youtube.com/embed/DWRcNpR6Kdc"
+                           data-target="#videoModal"><i class="fa fa-play"></i>Watch Video</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Carousel End -->

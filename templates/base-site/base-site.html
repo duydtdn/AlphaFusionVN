@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block page_title %}{% endblock %}</title>
+    {% block css_js_default_head %}{% endblock %}
+    {% block css_js_lib_head %}{% endblock %}
+    {% block css_js_custom_head %}{% endblock %}
+</head>
+<body>
+<!-- Preloader -->
+<div class="preloader">
+    <div class="spinner-dots">
+        <span class="dot1"></span>
+        <span class="dot2"></span>
+        <span class="dot3"></span>
+    </div>
+</div>
+{% block topbar %}{% endblock %}
+{% block navbar %}{% endblock %}
+{% block page_content %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block js_default_foot %}{% endblock %}
+{% block js_lib_foot %}{% endblock %}
+{% block js_custom_foot %}{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+{% load static %}
+<!-- About Start -->
+<div class="about">
+    <div class="container">
+        <div class="row align-items-center">
+        {% for list_about in home_about %}
+            <div class="col-md-6">
+                <div class="about-img">
+                    <div class="about-img-1">
+                        <img src="/media/{{ list_about.hinh_anh }}" alt="Image">
+                    </div>
+                    <div class="about-img-2">
+                        <img src="/media/{{ list_about.hinh_anh }}" alt="Image">
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+            {% for list_about in home_about %}
+            <div class="col-md-6">
+                <div class="section-header">
+                    <p>Learn About Us</p>
+                    <h2>{{ list_about.tieu_de | safe }}</h2>
+                </div>
+                    <div class="about-text">
+                        <p>
+                            {{ list_about.trich_yeu | safe }}
+                        </p>
+                        <p>
+                            {{ list_about.noi_dung | safe }}
+                        </p>
+                        <a class="btn" href="">Learn More</a>
+                    </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- About End -->
