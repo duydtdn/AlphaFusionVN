@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from django.conf.urls import url, include
+from AlphaFusionVN import settings
+from django.conf.urls.static import static
+import AFTravel.urls as travelurls
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^travel', include('AFTravel.urls')),
+    url(r'^home', include('AFWeb.urls')),
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
