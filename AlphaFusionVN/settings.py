@@ -110,6 +110,12 @@ CMS_TEMPLATES = (
     ('sidebar_right.html', 'Sidebar Right'),
     ('index.html', 'AIIOT')
 )
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+CMS_PERMISSION = True
+
+CMS_PLACEHOLDER_CONF = {}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -126,7 +132,7 @@ MIDDLEWARE = [
     'cms.middleware.toolbar.ToolbarMiddleware',
     'cms.middleware.language.LanguageCookieMiddleware'
 ]
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 ROOT_URLCONF = 'AlphaFusionVN.urls'
 
 TEMPLATES = [

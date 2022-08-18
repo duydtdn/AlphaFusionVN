@@ -3,6 +3,19 @@ from django.urls import reverse
 from ckeditor_uploader.fields import RichTextUploadingField
 from datetime import datetime
 # Create your models here.
+
+class Menu(models.Model):
+    enabled = models.BooleanField(verbose_name='Kích hoạt', default=True)
+    language = models.CharField(max_length=2)
+    parent = models.ForeignKey('self', null=True, blank=True, related_name='children', on_delete=models.CASCADE)
+    menu = models.CharField(max_length=120)
+    url = models.SlugField(max_length=200)
+
+    def __unicode__(self):
+        return '%s' % self.menu
+    def __str__(self):
+        return self.menu
+
 class TheLoai(models.Model):
     ten = models.CharField(verbose_name='Chuyên mục', max_length=150, db_index=True)
     slug = models.SlugField(max_length=150, unique=True ,db_index=True)

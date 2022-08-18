@@ -36,8 +36,8 @@ urlpatterns = [
 ]
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += i18n_patterns(
-    path("admin/", admin.site.urls), path("", include("cms.urls"))
-
+    path("admin/", admin.site.urls), path("", include("cms.urls")),
+    path("home/", include("AFWeb.urls"))
 )
 
 # This is only needed when using runserver.
