@@ -301,7 +301,7 @@ a:focus {
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba(27, 115, 115, 0.7);
+    /*background: rgba(27, 115, 115, 0.7);*/
     z-index: 1;
 }
 
