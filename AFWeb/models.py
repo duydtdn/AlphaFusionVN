@@ -2,6 +2,8 @@ from django.db import models
 from django.urls import reverse
 from ckeditor_uploader.fields import RichTextUploadingField
 from datetime import datetime
+from PIL import Image
+from mptt.models import MPTTModel, TreeForeignKey
 # Create your models here.
 
 class Menu(models.Model):
@@ -15,12 +17,35 @@ class Menu(models.Model):
         return '%s' % self.menu
     def __str__(self):
         return self.menu
+    class Meta:
+        verbose_name_plural = 'QL menu'
 
-class TheLoai(models.Model):
+class TheLoai(MPTTModel):
     ten = models.CharField(verbose_name='Chuyên mục', max_length=150, db_index=True)
     slug = models.SlugField(max_length=150, unique=True ,db_index=True)
+    # parent = models.ForeignKey('self', null=True, blank=True, related_name='children', on_delete=models.CASCADE)
+    parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True,on_delete=models.CASCADE)
     # thu_tu = models.IntegerField(default=0)
-    # nut_cha = models.IntegerField(default=0, null=True, blank=True)
+    class MPTTMeta:
+        # level_attr = 'mptt_level'
+        order_insertion_by = ['parent']
+
+    class Meta:
+        unique_together = (('parent', 'slug',))
+        verbose_name_plural = 'Chuyên mục'
+
+    def get_slug_list(self):
+        try:
+            ancestors = self.get_ancestors(include_self=True)
+        except:
+            ancestors = []
+        else:
+            ancestors = [i.slug for i in ancestors]
+        slugs = []
+        for i in range(len(ancestors)):
+            slugs.append('/'.join(ancestors[:i + 1]))
+        return slugs
+
     def __unicode__(self):
         return '%s' % self.ten
     def __str__(self):
@@ -28,6 +53,7 @@ class TheLoai(models.Model):
 
     def get_absolute_url(self):
         return reverse('AFWeb:news_list', args=[self.slug])
+
 
 class TinTuc(models.Model):
     the_loai = models.ForeignKey(TheLoai, on_delete=models.CASCADE)
@@ -54,6 +80,8 @@ class TinTuc(models.Model):
 
     def get_absolute_url(self):
         return reverse('AFWeb:news_detail', args=[self.id, self.slug])
+    class Meta:
+        verbose_name_plural = 'QL Tin tức'
 
 # ============== GALLERY ACTIVITIES ==============
 class GalleryActivity(models.Model):
@@ -68,6 +96,8 @@ class GalleryImages(models.Model):
     # def delete(self, *args, **kwargs):
     #     ModelsCtr.delete_file(str(self.url))
     #     super(GalleryImages, self).delete(*args, **kwargs)
+    class Meta:
+        verbose_name_plural = 'QL Thư viện Media'
 
 class BannerLoc(models.Model):
     vi_tri = models.CharField(verbose_name='Vị trí', default='default', max_length=150, db_index=True)
@@ -79,7 +109,8 @@ class BannerLoc(models.Model):
         return '%s' % self.vi_tri
     def __str__(self):
         return self.vi_tri
-
+    class Meta:
+        verbose_name_plural = 'QL Vị trí banner'
     # def get_absolute_url(self):
     #     return reverse('AFWeb:news_list', args=[self.slug])
 
@@ -112,3 +143,37 @@ class Banner(models.Model):
 
     def get_absolute_url(self):
         return reverse('AFWeb:news_detail', args=[self.id, self.slug])
+    class Meta:
+        verbose_name_plural = 'QL Banner'
+
+class Client(models.Model):
+    client = models.CharField(default='', verbose_name="Đối tác", max_length=100, blank=True, null=True)
+    def logo_image_directory_path(Client, filename):
+        dirname = datetime.now().strftime('%Y.%m.%d.%H.%M.%S')
+        return 'uploads/clients/{0}/logo/{1}'.format(dirname, filename)
+
+    hinh_anh = models.FileField(upload_to=logo_image_directory_path, verbose_name="Logo",
+                              default='', null=True)
+
+    def __unicode__(self):
+        return '%s' % self.client
+
+    def __str__(self):
+        return self.client
+    class Meta:
+        verbose_name_plural = 'Đối tác'
+
+    def save(self, force_insert=False, force_update=False):
+        size = 300, 300
+        super(Client, self).save(force_insert, force_update)
+        if self.id is not None:
+            # previous = Destination.objects.get(id=self.id)
+            # if self.avatar and self.avatar != previous.avatar:
+            if self.hinh_anh:
+                try:
+                    image = Image.open(self.hinh_anh.name)
+                    # image = image.resize((100, 100), Image.ANTIALIAS)
+                    image.thumbnail(size, Image.ANTIALIAS)
+                    image.save(self.hinh_anh.name)
+                except IOError:
+                    print("Co loi trong qua trinh resize")
