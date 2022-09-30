@@ -80,6 +80,7 @@ INSTALLED_APPS = [
     'django_filters',
     'storages',
 ]
+SITE_ID = 1
 LANGUAGES = (
     ## Customize this
     ('en', gettext('en')),
