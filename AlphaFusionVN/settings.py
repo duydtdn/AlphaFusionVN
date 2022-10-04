@@ -255,3 +255,14 @@ CKEDITOR_CONFIGS = {
     }
 }
 django_heroku.settings(locals(), staticfiles=False)
+AWS_ACCESS_KEY_ID = 'AKIAVQMSLKSCP3ZQYM7R'
+AWS_SECRET_ACCESS_KEY = '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'
+DEFAULT_FILE_STORAGE = 'AlphaFusionVN.storage_backends.MediaStorage'
+AWS_STORAGE_BUCKET_NAME = 'afv-assets'
+AWS_S3_REGION_NAME = 'us-east-1'
+AWS_URL='https://afv-assets.s3.amazonaws.com/'
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+STATIC_URL = AWS_URL + '/static/'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_URL = AWS_URL + '/media/'
