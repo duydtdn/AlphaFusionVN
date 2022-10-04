@@ -5,7 +5,7 @@ from django_mptt_admin.admin import DjangoMpttAdmin
 from AFWeb.models import *
 # Register your models here.
 
-admin.site.site_header = 'AIIOT'
+admin.site.site_header = 'AlphaFusionVN'
 # class TheLoaiInline(admin.TabularInline):
 #     model = TheLoai
 
