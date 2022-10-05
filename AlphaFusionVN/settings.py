@@ -219,8 +219,6 @@ USE_TZ = True
 
 
 USE_THOUSAND_SEPARATOR = True
-
-SITE_ID = 1
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -247,12 +245,12 @@ CKEDITOR_CONFIGS = {
         ),
     }
 }
-USE_S3 = os.getenv('USE_S3') == 'FALSE'
+USE_S3 = os.getenv('USE_S3') == 'TRUE'
 if USE_S3:
     django_heroku.settings(locals(), staticfiles=False)
     AWS_ACCESS_KEY_ID = 'AKIAVQMSLKSCP3ZQYM7R'
     AWS_SECRET_ACCESS_KEY = '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'
-    DEFAULT_FILE_STORAGE = 'AFWeb.storage_backends.MediaStorage'
+    DEFAULT_FILE_STORAGE = 'AlphaFusionVN.storage_backends.MediaStorage'
     AWS_STORAGE_BUCKET_NAME = 'afv-assets'
     AWS_S3_REGION_NAME = 'us-east-1'
     AWS_URL = 'https://afv-assets.s3.amazonaws.com/'
