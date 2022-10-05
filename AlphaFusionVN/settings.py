@@ -16,8 +16,8 @@ gettext = lambda s: s
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = os.path.dirname(os.path.dirname(__file__))
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -173,13 +173,24 @@ WSGI_APPLICATION = 'AlphaFusionVN.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+### CONFIG FOR HEROKU
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'CONN_MAX_AGE': 0,
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': 'ec2-34-227-135-211.compute-1.amazonaws.com',
+        'NAME': 'd68l2ven60vorf',
+        'PASSWORD': 'cc1c2803b08de88d9e61f25e4ac8daff5a81bc9bcf0abca3d26a967c8b520354',
+        'PORT': '5432',
+        'USER': 'uqexruyuxxwhnv'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -247,16 +258,16 @@ CKEDITOR_CONFIGS = {
 }
 # USE_S3 = os.getenv('USE_S3') == 'TRUE'
 # if USE_S3:
-
+# AWS_DEFAULT_ACL = None
 AWS_ACCESS_KEY_ID = 'AKIAVQMSLKSCP3ZQYM7R'
 AWS_SECRET_ACCESS_KEY = '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'
 DEFAULT_FILE_STORAGE = 'AlphaFusionVN.storage_backends.MediaStorage'
-AWS_STORAGE_BUCKET_NAME = 'afv-assets'
-AWS_S3_REGION_NAME = 'us-east-1'
-AWS_URL = 'https://afv-assets.s3.amazonaws.com/'
+AWS_STORAGE_BUCKET_NAME = 'afvn-assets'
+AWS_S3_REGION_NAME = 'us-east-2'
+AWS_URL = 'https://afvn-assets.s3.amazonaws.com/'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
-STATIC_URL = AWS_URL + '/staticfiles/'
+STATIC_URL = AWS_URL + '/static/'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 MEDIA_URL = AWS_URL + '/media/'
 # else:
