@@ -261,7 +261,7 @@ CKEDITOR_CONFIGS = {
 # AWS_DEFAULT_ACL = None
 AWS_ACCESS_KEY_ID = 'AKIAVQMSLKSCHGNKUHFL'
 AWS_SECRET_ACCESS_KEY = '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'
-DEFAULT_FILE_STORAGE = 'storage_backends.MediaStorage'
+DEFAULT_FILE_STORAGE = 'AlphaFusionVN.storage_backends.MediaStorage'
 AWS_STORAGE_BUCKET_NAME = 'afvn-assets'
 AWS_S3_REGION_NAME = 'us-east-2'
 AWS_URL = 'https://afvn-assets.s3.amazonaws.com/'
@@ -270,7 +270,7 @@ AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=94608000'}
 STATIC_URL = AWS_URL + '/static/'
 STATICFILES_LOCATION = 'static'
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storage_backends.StaticStorage'
+STATICFILES_STORAGE = 'AlphaFusionVN.storage_backends.StaticStorage'
 MEDIA_URL = AWS_URL + '/media/'
 MEDIAFILES_LOCATION = 'media'
 # else:
