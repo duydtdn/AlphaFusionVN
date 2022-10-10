@@ -173,24 +173,24 @@ WSGI_APPLICATION = 'AlphaFusionVN.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-### CONFIG FOR HEROKU
 DATABASES = {
     'default': {
-        'CONN_MAX_AGE': 0,
-        'ENGINE': 'django.db.backends.postgresql',
-        'HOST': 'ec2-34-227-135-211.compute-1.amazonaws.com',
-        'NAME': 'd68l2ven60vorf',
-        'PASSWORD': 'cc1c2803b08de88d9e61f25e4ac8daff5a81bc9bcf0abca3d26a967c8b520354',
-        'PORT': '5432',
-        'USER': 'uqexruyuxxwhnv'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+### CONFIG FOR HEROKU
+# DATABASES = {
+#     'default': {
+#         'CONN_MAX_AGE': 0,
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'HOST': 'ec2-34-227-135-211.compute-1.amazonaws.com',
+#         'NAME': 'd68l2ven60vorf',
+#         'PASSWORD': 'cc1c2803b08de88d9e61f25e4ac8daff5a81bc9bcf0abca3d26a967c8b520354',
+#         'PORT': '5432',
+#         'USER': 'uqexruyuxxwhnv'
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
