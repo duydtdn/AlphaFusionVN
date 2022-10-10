@@ -259,27 +259,26 @@ CKEDITOR_CONFIGS = {
 # USE_S3 = os.getenv('USE_S3') == 'TRUE'
 # if USE_S3:
 # AWS_DEFAULT_ACL = None
-AWS_ACCESS_KEY_ID = 'AKIAVQMSLKSCM6TH6YW7'
-AWS_SECRET_ACCESS_KEY = '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'
-DEFAULT_FILE_STORAGE = 'AlphaFusionVN.storage_backends.MediaStorage'
-AWS_STORAGE_BUCKET_NAME = 'afvn-assets'
-AWS_S3_REGION_NAME = 'us-east-2'
-AWS_URL = 'https://afvn-assets.s3.amazonaws.com/'
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=94608000'}
-STATIC_URL = AWS_URL + '/static/'
-STATICFILES_LOCATION = 'static'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'AlphaFusionVN.storage_backends.StaticStorage'
-MEDIA_URL = AWS_URL + '/media/'
-MEDIAFILES_LOCATION = 'media'
+# AWS_ACCESS_KEY_ID = 'AKIAVQMSLKSCM6TH6YW7'
+# AWS_SECRET_ACCESS_KEY = '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'
+# DEFAULT_FILE_STORAGE = 'AlphaFusionVN.storage_backends.MediaStorage'
+# AWS_STORAGE_BUCKET_NAME = 'afvn-assets'
+# AWS_S3_REGION_NAME = 'us-east-2'
+# AWS_URL = 'https://afvn-assets.s3.amazonaws.com/'
+# AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+# AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=94608000'}
+# STATIC_URL = AWS_URL + '/static/'
+# STATICFILES_LOCATION = 'static'
+# STATICFILES_STORAGE = 'AlphaFusionVN.storage_backends.StaticStorage'
+# MEDIA_URL = AWS_URL + '/media/'
+# MEDIAFILES_LOCATION = 'media'
 # else:
-#     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-#     STATIC_URL = '/static/'
-#     STATICFILES_DIRS = [
-#         os.path.join(BASE_DIR, "static"),
-#     ]
-#     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-#     MEDIA_URL = '/media/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 django_heroku.settings(locals(), staticfiles=False)
