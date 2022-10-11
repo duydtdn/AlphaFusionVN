@@ -20,6 +20,14 @@ def index(request):
                       'category_slug': category_slug,
                    }
                   )
+def news_detail_view(request, slug, id):
+    # list_news = news.get_news()
+    news = TinTuc.objects.filter(id=id, slug=slug)
+    context = {
+        'news': news,
+        # 'recent_blogs': recent_news,
+    }
+    return render(request, '../templates/pages/news.html', context)
 
 class SearchResultsView(ListView):
     model = TinTuc
