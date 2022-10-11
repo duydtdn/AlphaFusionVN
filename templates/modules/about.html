@@ -1,5 +1,5 @@
 {% load static %}
-{% static "" as baseUrl %}
+{#{% static "" as baseUrl %}#}
 <!-- Feature Start -->
 <div class="feature" id="feature">
     <div class="container">
@@ -7,7 +7,7 @@
             {% for list_about in home_about %}
             <div class="col-md-6">
                 <div class="feature-img">
-                    <img src="{{ baseUrl }}media/{{ list_about.hinh_anh }}" alt="Image">
+                    <img src="media/{{ list_about.hinh_anh }}" alt="Image">
                 </div>
             </div>
             <div class="col-md-6">
