@@ -3,16 +3,17 @@ from django.contrib.auth import authenticate, logout, login
 from django.shortcuts import render, redirect, get_object_or_404
 # Create your views here.
 from django.db.models import Q
-from AFWeb.controllers import BannerCtr, NewsCtr
+from AFWeb.controllers import BannerCtr, NewsCtr, ClientsCtr, MenuCtr
 from django.views.generic import ListView
 from AFWeb.models import TheLoai, TinTuc, Menu
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def index(request):
     # create_user_session(request)
-    list_menu = Menu.objects.all()
+    list_menu = MenuCtr.get_menu()
     list_carousel = BannerCtr.get_list_banner_by_slide()
     list_news, category_name, category_slug = NewsCtr.get_list_news_by_category('Tin tức - Sự kiện')
+    list_clients = ClientsCtr.get_clients()
     return render(request, '../templates/index.html',
                   {
                       # 'home_about': about.get_about_show_index_page()[:1],
@@ -21,6 +22,7 @@ def index(request):
                       'list_news': list_news,
                       'category_name': category_name,
                       'category_slug': category_slug,
+                      'list_clients': list_clients
                    }
                   )
 def get_news_by_category(request, category_slug):
