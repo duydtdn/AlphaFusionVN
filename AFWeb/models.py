@@ -147,7 +147,7 @@ class Banner(models.Model):
         verbose_name_plural = 'QL Banner'
 
 class Client(models.Model):
-    client = models.CharField(default='', verbose_name="Đối tác", max_length=100, blank=True, null=True)
+    client = models.CharField(default='', verbose_name="Đối tác", max_length=200, blank=True, null=True)
     def logo_image_directory_path(Client, filename):
         dirname = datetime.now().strftime('%Y.%m.%d.%H.%M.%S')
         return 'uploads/clients/{0}/logo/{1}'.format(dirname, filename)

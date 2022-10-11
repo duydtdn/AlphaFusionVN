@@ -1,6 +1,6 @@
 <!-- Testimonial Start -->
 {% load static %}
-{% static "" as baseUrl %}
+{#{% static "" as baseUrl %}#}
 <div class="testimonial">
     <div class="container">
         <div class="section-header">
@@ -9,7 +9,7 @@
         <div class="owl-carousel testimonials-carousel">
             {% for client in list_clients%}
             <div class="testimonial-item">
-                <img src="{{ baseUrl }}media/{{ client.hinh_anh }}" alt="Image">
+                <img src="media/{{ client.hinh_anh }}" alt="Image">
 {#                <p>#}
 {#                    Phasellus pellentesque tempus pretium. Quisque in enim sit amet purus venenatis porttitor sed non#}
 {#                    velit. Vivamus vehicula finibus#}
