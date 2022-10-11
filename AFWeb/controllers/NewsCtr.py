@@ -7,4 +7,6 @@ def get_list_news_by_category_id(category_id):
 def get_list_news_by_category(category_name):
     category_id, category_slug = CategoryCtr.get_category_id_by_name(category_name)
     news_list = get_list_news_by_category_id(category_id)
+    if category_name == 'About':
+        return news_list
     return news_list, category_name, category_slug

@@ -13,10 +13,11 @@ def index(request):
     list_menu = MenuCtr.get_menu()
     list_carousel = BannerCtr.get_list_banner_by_slide()
     list_news, category_name, category_slug = NewsCtr.get_list_news_by_category('Tin tức - Sự kiện')
+    home_about = NewsCtr.get_list_news_by_category('About')[:1]
     list_clients = ClientsCtr.get_clients()
     return render(request, '../templates/index.html',
                   {
-                      # 'home_about': about.get_about_show_index_page()[:1],
+                      'home_about': home_about,
                       'list_carousel': list_carousel,
                       'list_menu': list_menu,
                       'list_news': list_news,
