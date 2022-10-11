@@ -2,9 +2,12 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, logout, login
 from django.shortcuts import render, redirect, get_object_or_404
 # Create your views here.
+from django.db.models import Q
 from AFWeb.controllers import BannerCtr, NewsCtr
 from django.views.generic import ListView
 from AFWeb.models import TheLoai, TinTuc, Menu
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 def index(request):
     # create_user_session(request)
     list_menu = Menu.objects.all()
@@ -20,6 +23,35 @@ def index(request):
                       'category_slug': category_slug,
                    }
                   )
+def get_news_by_category(request, category_slug):
+    categories_id = TheLoai.objects.filter(slug=category_slug).first().id
+    list_news_by_category = TinTuc.objects.filter(the_loai_id=categories_id).order_by('id')
+    list_menu = Menu.objects.filter(enabled=True, parent__isnull=True)
+    if category_slug == 'About':
+        # home_about = home_view.get_about_show_index_page('About')
+        context = {
+            'list_menu': list_menu,
+            # 'home_about': home_about,
+        }
+        return render(request, '../templates/pages/about_page.html', context)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(list_news_by_category, 10)
+    try:
+        news_by_category = paginator.page(page)
+    except PageNotAnInteger:
+        news_by_category = paginator.page(1)
+    except EmptyPage:
+        news_by_category = paginator.page(paginator.num_pages)
+    # if category_slug:
+    #     category = get_object_or_404(TheLoai, slug=category_slug)
+        # blogs_by_categories = Blog.objects.filter(category=category)
+
+    context = {
+        'news_by_category': news_by_category,
+        'list_menu': list_menu
+    }
+    return render(request, '../templates/pages/news.html', context)
+
 def news_detail_view(request, slug, id):
     # list_news = news.get_news()
     news = TinTuc.objects.filter(id=id, slug=slug)

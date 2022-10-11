@@ -79,7 +79,7 @@ class TinTuc(models.Model):
         return self.tieu_de
 
     def get_absolute_url(self):
-        return reverse('AFWeb:news_detail', args=[self.id, self.slug])
+        return reverse('AFWeb:news_detail_view', args=[self.slug, self.id])
     class Meta:
         verbose_name_plural = 'QL Tin tức'
 
