@@ -1,6 +1,6 @@
 <!-- Blog Start -->
 {% load static %}
-{% static "" as baseUrl %}
+
 <div class="blog" id="blog">
     <div class="container">
         <div class="section-header">
@@ -11,7 +11,7 @@
             {% for news in list_news %}
             <div class="blog-item">
                 <div class="blog-img" >
-                    <img src="{{ baseUrl }}media/{{ news.hinh_anh }}" alt="Blog">
+                    <img src="media/{{ news.hinh_anh }}" alt="Blog">
                 </div>
                 <div class="blog-content">
                     <h2 class="blog-title tieu_de">{{ news.tieu_de }}</h2>

@@ -31,14 +31,13 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path("sitemap.xml", sitemap, {"sitemaps": {"cmspages": CMSSitemap}}),
     url(r'^travel', include('AFTravel.urls')),
-    # url(r'^home', include('AFWeb.urls')),
     path('', include('AFWeb.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += i18n_patterns(
     path("admin/", admin.site.urls), path("", include("cms.urls")),
-    path("home/", include("AFWeb.urls")),
+    # path("home/", include("AFWeb.urls")),
 )
 
 # This is only needed when using runserver.
