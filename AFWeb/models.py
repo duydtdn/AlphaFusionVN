@@ -56,7 +56,8 @@ class TheLoai(MPTTModel):
 
 
 class TinTuc(models.Model):
-    the_loai = models.ForeignKey(TheLoai, on_delete=models.CASCADE)
+    # the_loai = models.ForeignKey(TheLoai, on_delete=models.CASCADE)
+    the_loai = models.ManyToManyField(TheLoai, related_name="the_loai")
     tieu_de = models.CharField(verbose_name='Tiêu đề',max_length=200, unique=True)
     trich_yeu = models.CharField(verbose_name='Trích yếu', max_length=500, null=True,blank=True)
     noi_dung = RichTextUploadingField(verbose_name='Nội dung',null=True,blank=True)

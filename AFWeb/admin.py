@@ -3,22 +3,24 @@ from django.utils.html import format_html
 from mptt.admin import MPTTModelAdmin, DraggableMPTTAdmin
 from django_mptt_admin.admin import DjangoMpttAdmin
 from AFWeb.models import *
+from AFWeb.forms import TinTucForm
 # Register your models here.
 
 admin.site.site_header = 'AlphaFusionVN'
 # class TheLoaiInline(admin.TabularInline):
 #     model = TheLoai
 
-class TheLoaiMPTTModelAdmin(DjangoMpttAdmin):
-    def is_drag_and_drop_enabled(self):
-        return True
+# class TheLoaiMPTTModelAdmin(DjangoMpttAdmin):
+#     def is_drag_and_drop_enabled(self):
+#         return True
 
 class TinTucAdmin(admin.ModelAdmin):
-    search_fields = ('tieu_de', )
-    exclude = ['ngay_dang']
-    prepopulated_fields = {'slug': ('tieu_de',)}
-    list_display = ('ngay_dang', 'tieu_de', 'duyet')
+    # search_fields = ('tieu_de', )
+    # exclude = ['ngay_dang']
+    # prepopulated_fields = {'slug': ('tieu_de',)}
+    # list_display = ('ngay_dang', 'tieu_de', 'duyet')
     # list_editable = ('ngay_dang', 'tieu_de', 'duyet')
+    form = TinTucForm
 
 class BannerLocAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('vi_tri',)}
@@ -33,7 +35,7 @@ class ClientAdmin(admin.ModelAdmin):
     prepopulated_fields = {'client': ('client',)}
 
 admin.site.register(TinTuc, TinTucAdmin)
-admin.site.register(TheLoai, DraggableMPTTAdmin)
+admin.site.register(TheLoai)
 admin.site.register(BannerLoc, BannerLocAdmin)
 admin.site.register(Banner, BannerAdmin)
 # admin.site.register(Client, ClientAdmin)
