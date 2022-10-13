@@ -3,10 +3,13 @@ from django.contrib.auth import authenticate, logout, login
 from django.shortcuts import render, redirect, get_object_or_404
 # Create your views here.
 from django.db.models import Q
+from django.views.decorators.csrf import csrf_exempt
+
 from AFWeb.controllers import BannerCtr, NewsCtr, ClientsCtr, MenuCtr
 from django.views.generic import ListView
 from AFWeb.models import TheLoai, TinTuc, Menu
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+import json
 
 def index(request):
     # create_user_session(request)
@@ -28,9 +31,8 @@ def index(request):
                   )
 
 def get_news_by_category(request, category_slug):
-    print(category_slug)
-    categories_id = TheLoai.objects.filter(slug=category_slug).first().id
-    list_news_by_category = TinTuc.objects.filter(the_loai_id=categories_id).order_by('-ngay_dang')
+    # categories_id = TheLoai.objects.filter(slug=category_slug).first().id
+    list_news_by_category = TinTuc.objects.filter(the_loai__slug=category_slug).order_by('-ngay_dang')
     list_menu = Menu.objects.filter(enabled=True, parent__isnull=True)
     if category_slug == 'About':
         # home_about = home_view.get_about_show_index_page('About')
@@ -78,3 +80,14 @@ class SearchResultsView(ListView):
         )
         context_object_name = news_by_category
         return context_object_name
+
+@csrf_exempt
+def rq_show_services(request):
+    if request.method == 'POST':
+        request_data = json.loads(request.body.decode('utf-8'))
+        # dataID = request_data['dataId']
+        string = '1124134'
+
+    return render(request, '../templates/modules/services_custom.html', {
+        'dataID': string,
+    })
