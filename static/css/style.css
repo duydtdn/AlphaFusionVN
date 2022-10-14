@@ -1548,3 +1548,97 @@ a:focus {
     animation-timing-function:ease-in-out;
     animation-direction: alternate;
   }
+.mCustomScrollbar.mCS_no_scrollbar, .mCustomScrollbar.mCS_touch_action {
+    -ms-touch-action: auto;
+    touch-action: auto;
+}
+.integrated-features.active .app-features {
+    border: 1px solid #62d6d6!important;
+}
+.features-items:active {
+    border: 1px solid #62d6d6!important;
+}
+.app-features:active {
+    border: 1px solid #97cb76;
+}
+button:active, button:hover, button:visited {
+    border: inherit ;
+}
+.features {
+    height: 400px;
+}
+.buttons {
+    bottom: 20px;
+}
+.arrows {
+    background-color: #f5f5f5;
+}
+.mCustomScrollBox {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    max-width: 100%;
+    outline: 0;
+    direction: ltr;
+}
+.mCSB_container {
+    overflow: hidden;
+    width: auto;
+    height: auto;
+}
+.mCSB_inside>.mCSB_container {
+    margin-right: 30px
+}
+.mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
+    margin-right: 0;
+}
+.rounded {
+    border-radius: 0.25rem!important;
+}
+.zilla_slab_regular {
+    font-family: zilla_slab_regularregular;
+}
+.app-features {
+    border: 1px solid #dddddd;
+    /* height: 64px !important; */
+    min-height: 64px !important;
+    /* height: 100%; */
+    font-size: 16px;
+}
+.bg-f4f4f4 {
+    background-color: #f4f4f4;
+}
+.mCSB_container {
+    overflow: hidden;
+    width: auto;
+    height: auto;
+}
+.registration-headding {
+    color: #62d6d6;
+}
+.mCSB_scrollTools {
+    position: absolute;
+    width: 16px;
+    height: auto;
+    left: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    opacity: .75;
+    filter: "alpha(opacity=75)";
+    -ms-filter: "alpha(opacity=75)";
+}
+.mCSB_scrollTools .mCSB_draggerContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: auto;
+}
+.mCSB_scrollTools .mCSB_dragger {
+    cursor: pointer;
+    width: 100%;
+    height: 30px;
+    z-index: 1;
+}
