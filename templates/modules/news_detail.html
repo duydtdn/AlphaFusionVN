@@ -1,5 +1,5 @@
 {% load static %}
-{% static "" as baseUrl %}
+{#{% static "" as baseUrl %}#}
 {% if news %}
     <!-- Single Page Start -->
     <div class="single mt-125">
@@ -25,17 +25,17 @@
 {% elif news_by_category %}
     <div class="blog blog-page mt-125">
         <div class="container">
-            <div class="section-header">
-                <p>Consulting Blog</p>
-                <h2>Latest From Our Consulting Blog</h2>
-            </div>
+{#            <div class="section-header">#}
+{#                <p>Consulting Blog</p>#}
+{#                <h2>Latest From Our Consulting Blog</h2>#}
+{#            </div>#}
             <div class="row">
                 {% csrf_token %}
                 {% for news in news_by_category %}
                     <div class="col-md-6">
                         <div class="blog-item">
                             <div class="blog-img">
-                                <img src="{{ baseUrl }}media/{{ news.hinh_anh }}" alt="Blog">
+                                <img src="media/{{ news.hinh_anh }}" alt="Blog">
                             </div>
                             <div class="blog-content">
                                 <h2 class="blog-title">{{ news.tieu_de }}</h2>
