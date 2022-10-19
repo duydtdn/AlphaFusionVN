@@ -1,3 +1,4 @@
+{#<section class="section yellow_listed_section">#}
     <div class="container ">
         <div class="row mx-0">
             <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 pl-60px">
@@ -140,48 +141,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4 mb-3 mb-lg-0">
-                <div id="features-item1"
-                     class="bg-fcfcfc p-3 border rounded features-item-dec mCustomScrollbar features position-relative  _mCS_2">
-                    <div id="mCSB_2" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" tabindex="0"
-                         style="max-height: none;">
-                        <div id="mCSB_2_container" class="mCSB_container" style="position:relative; top:0; left:0;"
-                             dir="ltr">
-                            <div class="zilla_slab_regular font-size-24 registration-headding mb-2">
-                                {{ dataID }}
-                            </div>
-                            <div class="zilla_slab_light font-size-18">
-                                Your customer can log in to the system with valid credentials and search for the
-                                required services from the list provided in the app. This feature enables your customer
-                                to view the list of services based on the categories like flights, cars, buses, and
-                                hotel etc, registered in the application. This feature lets them select the service and
-                                view the respective fare charts. Your customer can view and reserve/book the services
-                                based on the categories by making payment. Once the services are booked/reserved, they
-                                receive booking/reservation confirmation message by SMS / Email.<br></div>
-                            <div class="position-absolute buttons d-none">
-                                <button class="arrows btn p-2 rounded-circle d-inline-flex">
-                                    <img src="https://tvishacdn.tvisha.com/img/l-arrow.svg" style="width: 15px;"
-                                         alt="left arrow" class="mCS_img_loaded">
-                                </button>
-                                <button class="arrows btn p-2 rounded-circle d-inline-flex">
-                                    <img src="https://tvishacdn.tvisha.com/img/r-arrow.svg" style="width: 15px;"
-                                         alt="right arrow" class="mCS_img_loaded">
-                                </button>
-                            </div>
-                        </div>
-                        <div id="mCSB_2_scrollbar_vertical"
-                             class="mCSB_scrollTools mCSB_2_scrollbar mCS-light mCSB_scrollTools_vertical"
-                             style="display: block;">
-                            <div class="mCSB_draggerContainer">
-                                <div id="mCSB_2_dragger_vertical" class="mCSB_dragger"
-                                     style="position: absolute; min-height: 30px; display: block; height: 281px; max-height: 356px; top: 0px;">
-                                    <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
-                                </div>
-                                <div class="mCSB_draggerRail"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div id="features-section" class="col-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4 mb-3 mb-lg-0">
+                {% include 'modules/services_custom_contend.html' %}
             </div>
         </div>
     </div>
+{#</section>#}

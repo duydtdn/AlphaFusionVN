@@ -88,6 +88,6 @@ def rq_show_services(request):
         # dataID = request_data['dataId']
         string = '1124134'
 
-    return render(request, '../templates/modules/services_custom.html', {
+    return render(request, '../templates/modules/services_custom_contend.html', {
         'dataID': string,
     })
