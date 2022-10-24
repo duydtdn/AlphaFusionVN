@@ -3,7 +3,8 @@
 <!-- Feature Start -->
 <div class="feature" id="feature">
     <div class="container">
-        <div class="row align-items-end">
+{#        <div class="row align-items-end">#}
+        <div class="row">
             {% for list_about in home_about %}
             <div class="col-md-6">
                 <div class="feature-img">
@@ -20,35 +21,35 @@
                         {{ list_about.noi_dung | safe }}
                     </p>
 
-                <div class="row counters">
-                    <div class="col-6">
-                        <i class="fa fa-user"></i>
-                        <div class="counters-text">
-                            <h2 data-toggle="counter-up">60</h2>
-                            <p>Kỹ sư</p>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <i class="fa fa-users"></i>
-                        <div class="counters-text">
-                            <h2 data-toggle="counter-up">30</h2>
-                            <p>Khách hàng</p>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <i class="fa fa-check"></i>
-                        <div class="counters-text">
-                            <h2 data-toggle="counter-up">5</h2>
-                            <p>Công trình nghiên cứu</p>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <i class="fa fa-running"></i>
-                        <div class="counters-text">
-                            <h2 data-toggle="counter-up">11</h2>
-                            <p>Dự án đang triển </p>
-                        </div>
-                    </div>
+{#                <div class="row counters">#}
+{#                    <div class="col-6">#}
+{#                        <i class="fa fa-user"></i>#}
+{#                        <div class="counters-text">#}
+{#                            <h2 data-toggle="counter-up">60</h2>#}
+{#                            <p>Kỹ sư</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <i class="fa fa-users"></i>#}
+{#                        <div class="counters-text">#}
+{#                            <h2 data-toggle="counter-up">30</h2>#}
+{#                            <p>Khách hàng</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <i class="fa fa-check"></i>#}
+{#                        <div class="counters-text">#}
+{#                            <h2 data-toggle="counter-up">5</h2>#}
+{#                            <p>Công trình nghiên cứu</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <i class="fa fa-running"></i>#}
+{#                        <div class="counters-text">#}
+{#                            <h2 data-toggle="counter-up">11</h2>#}
+{#                            <p>Dự án đang triển </p>#}
+{#                        </div>#}
+{#                    </div>#}
                 </div>
             </div>
             {% endfor %}
