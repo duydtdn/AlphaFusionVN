@@ -72,8 +72,6 @@ a:focus {
         margin-top: 125px;
     }
 }
-
-
 /**********************************/
 /********** Top Bar CSS ***********/
 /**********************************/
@@ -163,8 +161,6 @@ a:focus {
         padding: 0 60px;
     }
 }
-
-
 /**********************************/
 /*********** Nav Bar CSS **********/
 /**********************************/
@@ -181,7 +177,6 @@ a:focus {
     box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
     transition: .5s;
 }
-
 .navbar .navbar-brand {
     margin: 0;
     color: #ffffff;
@@ -190,7 +185,11 @@ a:focus {
     font-weight: 200;
     text-transform: uppercase;
 }
-
+@media (max-width: 575.98px) {
+    .navbar .navbar-brand {
+        font-size: 30px;
+    }
+}
 .navbar .navbar-brand img {
     max-width: 100%;
     max-height: 40px;
