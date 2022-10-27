@@ -1,0 +1,37 @@
+<!-- Blog Start -->
+{% load static %}
+
+<div class="blog" id="blog">
+    <div class="container">
+        <div class="section-header">
+{#            <p>Consulting Blog</p>#}
+            <h2><a href="{{ category_slug }}">{{ category_name }}</a></h2>
+        </div>
+        <div class="owl-carousel blog-carousel">
+            {% for news in list_news %}
+            <div class="blog-item">
+                <div class="blog-img" >
+                    <img src="/media/{{ news.hinh_anh }}" alt="Blog">
+                </div>
+                <div class="blog-content">
+                    <h2 class="blog-title tieu_de">{{ news.tieu_de }}</h2>
+                    <div class="blog-meta">
+                        <i class="fa fa-list-alt"></i>
+                        <a href="">Category</a>
+                        <i class="fa fa-calendar-alt"></i>
+                        <p>{{ news.ngay_dang }}</p>
+                    </div>
+                    <div class="blog-text">
+                        <p class="trich_yeu">
+                            {{ news.trich_yeu }}
+                        </p>
+                        <a class="btn" href="{{ news.get_absolute_url }}">Read More</a>
+{#                        <a class="btn" href="{% url 'aiiotweb:news_detail' %}">Read More</a>#}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Blog End -->
