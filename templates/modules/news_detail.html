@@ -6,8 +6,8 @@
         <div class="container">
             {% for foo in news %}
                 <div class="section-header">
-                    <p>{{ foo.tieu_de }}</p>
-                    <h2>{{ foo.trich_yeu }}</h2>
+                    <h2>{{ foo.tieu_de }}</h2>
+                    <p>{{ foo.trich_yeu }}</p>
                 </div>
                 <div class="row">
                     <div class="col-12 news-content">
@@ -35,7 +35,7 @@
                     <div class="col-md-6">
                         <div class="blog-item">
                             <div class="blog-img">
-                                <img src="media/{{ news.hinh_anh }}" alt="Blog">
+                                <img src="/media/{{ news.hinh_anh }}" alt="Blog">
                             </div>
                             <div class="blog-content">
                                 <h2 class="blog-title">{{ news.tieu_de }}</h2>
