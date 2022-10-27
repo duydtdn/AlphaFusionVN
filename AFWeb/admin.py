@@ -20,6 +20,7 @@ class TinTucAdmin(admin.ModelAdmin):
     # prepopulated_fields = {'slug': ('tieu_de',)}
     # list_display = ('ngay_dang', 'tieu_de', 'duyet')
     # list_editable = ('ngay_dang', 'tieu_de', 'duyet')
+    prepopulated_fields = {'slug': ('tieu_de',)}
     form = TinTucForm
 
 class BannerLocAdmin(admin.ModelAdmin):
@@ -34,8 +35,11 @@ class BannerAdmin(admin.ModelAdmin):
 class ClientAdmin(admin.ModelAdmin):
     prepopulated_fields = {'client': ('client',)}
 
+class TheLoaiAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('ten',)}
+
 admin.site.register(TinTuc, TinTucAdmin)
-admin.site.register(TheLoai)
+admin.site.register(TheLoai, TheLoaiAdmin)
 admin.site.register(BannerLoc, BannerLocAdmin)
 admin.site.register(Banner, BannerAdmin)
 # admin.site.register(Client, ClientAdmin)

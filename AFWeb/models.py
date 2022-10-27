@@ -60,6 +60,7 @@ class TinTuc(models.Model):
     # the_loai = models.ForeignKey(TheLoai, on_delete=models.CASCADE)
     the_loai = models.ManyToManyField(TheLoai, related_name="the_loai")
     tieu_de = models.CharField(verbose_name='Tiêu đề',max_length=200, unique=True)
+    slug = models.SlugField(max_length=500, unique=True)
     trich_yeu = models.CharField(verbose_name='Trích yếu', max_length=500, null=True,blank=True)
     noi_dung = RichTextUploadingField(verbose_name='Nội dung',null=True,blank=True)
     ngay_dang = models.DateTimeField(verbose_name='Ngày đăng', db_index=True, auto_now_add=True)
@@ -72,7 +73,6 @@ class TinTuc(models.Model):
                               default='', null=True)
     tin_noi_bat = models.BooleanField(verbose_name='Nổi bật',default=False)
     duyet = models.BooleanField(verbose_name='Duyệt', default=True)
-    slug = models.SlugField(max_length=500, unique=True)
 
     def __unicode__(self):
         return '%s' % self.tieu_de
@@ -104,7 +104,7 @@ class GalleryImages(models.Model):
 class BannerLoc(models.Model):
     vi_tri = models.CharField(verbose_name='Vị trí', default='default', max_length=150, db_index=True)
     size = models.CharField(default='', max_length=100, blank=True, null=False)
-    slug = models.SlugField(max_length=150, unique=True ,db_index=True)
+    # slug = models.SlugField(max_length=150, unique=True ,db_index=True)
     # thu_tu = models.IntegerField(default=0)
     # nut_cha = models.IntegerField(default=0, null=True, blank=True)
     def __unicode__(self):
