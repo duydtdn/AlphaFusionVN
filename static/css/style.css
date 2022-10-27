@@ -732,6 +732,7 @@ a:focus {
 .feature {
     position: relative;
     width: 100%;
+    height: auto;
     padding: 15px 0;
 }
 
@@ -1563,9 +1564,9 @@ a:focus {
 button:active, button:hover, button:visited {
     border: inherit ;
 }
-.features {
-    height: 400px;
-}
+/*.features {*/
+/*    height: 400px;*/
+/*}*/
 .buttons {
     bottom: 20px;
 }
@@ -1640,4 +1641,10 @@ button:active, button:hover, button:visited {
     width: 100%;
     height: 30px;
     z-index: 1;
+}
+@media (max-width: 575.98px) {
+    .row .news-content > img{
+        height: 100%;
+        width: 100%;
+    }
 }

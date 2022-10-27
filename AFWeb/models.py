@@ -11,6 +11,7 @@ class Menu(models.Model):
     language = models.CharField(max_length=2)
     parent = models.ForeignKey('self', null=True, blank=True, related_name='children', on_delete=models.CASCADE)
     menu = models.CharField(max_length=120)
+    order = models.IntegerField(verbose_name='Thứ tự', blank=False)
     url = models.SlugField(max_length=200)
 
     def __unicode__(self):
