@@ -2,7 +2,6 @@ from django.contrib import admin
 from AFTravel import models
 from .models import DesImage, RoomImage, DestinationServiceOther, Destination
 # from onesignal import OneSignal, FilterNotification, Filter, SegmentNotification
-import requests
 # Register your models here.
 
 class ServicesInline(admin.TabularInline):
