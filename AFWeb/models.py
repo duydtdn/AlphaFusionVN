@@ -156,7 +156,7 @@ class Client(models.Model):
 
     hinh_anh = models.FileField(upload_to=logo_image_directory_path, verbose_name="Logo",
                               default='', null=True)
-
+    link = models.CharField(verbose_name='Website',max_length=200, blank=True, null=True)
     def __unicode__(self):
         return '%s' % self.client
 
@@ -166,7 +166,9 @@ class Client(models.Model):
         verbose_name_plural = 'Đối tác'
 
     def save(self, force_insert=False, force_update=False):
-        size = 300, 300
+        # size = 300, 300
+        basewidth = 300
+
         super(Client, self).save(force_insert, force_update)
         if self.id is not None:
             # previous = Destination.objects.get(id=self.id)
@@ -174,8 +176,10 @@ class Client(models.Model):
             if self.hinh_anh:
                 try:
                     image = Image.open(self.hinh_anh.name)
-                    # image = image.resize((100, 100), Image.ANTIALIAS)
-                    image.thumbnail(size, Image.ANTIALIAS)
+                    wpercent = (basewidth / float(image.size[0]))
+                    hsize = int((float(image.size[1]) * float(wpercent)))
+                    image.thumbnail((basewidth,hsize), Image.ANTIALIAS)
+                    # image.thumbnail((basewidth, hsize), Image.LANCZOS)
                     image.save(self.hinh_anh.name)
                 except IOError:
                     print("Co loi trong qua trinh resize")
