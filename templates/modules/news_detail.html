@@ -6,8 +6,8 @@
         <div class="container">
             {% for foo in news %}
                 <div class="section-header">
-                    <h2>{{ foo.tieu_de }}</h2>
                     <p>{{ foo.trich_yeu }}</p>
+                    <h2>{{ foo.tieu_de }}</h2>
                 </div>
                 <div class="row">
                     <div class="col-12 news-content">
@@ -25,10 +25,10 @@
 {% elif news_by_category %}
     <div class="blog blog-page mt-125">
         <div class="container">
-{#            <div class="section-header">#}
-{#                <p>Consulting Blog</p>#}
-{#                <h2>Latest From Our Consulting Blog</h2>#}
-{#            </div>#}
+            {#            <div class="section-header">#}
+            {#                <p>Consulting Blog</p>#}
+            {#                <h2>Latest From Our Consulting Blog</h2>#}
+            {#            </div>#}
             <div class="row">
                 {% csrf_token %}
                 {% for news in news_by_category %}
