@@ -1,0 +1,573 @@
+.gal-container {
+        padding: 12px;
+        padding-bottom: 50px;
+    }
+
+    .gal-item {
+        overflow: hidden;
+        padding: 3px;
+    }
+
+    .gal-item .box {
+        height: 310px;
+        overflow: hidden;
+        background-color: #F5D338;
+    }
+
+    .box img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        -o-object-fit: cover;
+    }
+
+    .gal-item a:focus {
+        outline: none;
+    }
+
+    .gal-item a:after {
+        content: "\e003";
+        font-family: 'Glyphicons Halflings';
+        opacity: 0;
+        background-color: rgba(0, 0, 0, 0.75);
+        position: absolute;
+        right: 3px;
+        left: 3px;
+        top: 3px;
+        bottom: 3px;
+        text-align: center;
+        line-height: 350px;
+        font-size: 30px;
+        color: #fff;
+        -webkit-transition: all 0.5s ease-in-out 0s;
+        -moz-transition: all 0.5s ease-in-out 0s;
+        transition: all 0.5s ease-in-out 0s;
+    }
+
+    .gal-item a:hover:after {
+        opacity: 1;
+    }
+
+    .modal-open .gal-container .modal {
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-open .gal-item .modal-body {
+        padding: 0px;
+    }
+
+    .modal-open .gal-item button.close {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        background-color: #000;
+        opacity: 1;
+        color: #fff;
+        z-index: 999;
+        right: -12px;
+        top: -12px;
+        border-radius: 50%;
+        font-size: 15px;
+        border: 2px solid #fff;
+        line-height: 25px;
+        -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.35);
+        box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.35);
+    }
+
+    .modal-open .gal-item button.close:focus {
+        outline: none;
+    }
+
+    .modal-open .gal-item button.close span {
+        position: relative;
+        top: -3px;
+        font-weight: lighter;
+        text-shadow: none;
+    }
+
+    .gal-container .modal-dialogue {
+        width: 80%;
+    }
+
+    .gal-container .description {
+        position: relative;
+        height: 40px;
+        top: -40px;
+        padding: 10px 25px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        text-align: left;
+    }
+
+    .gal-container .description h4 {
+        margin: 0px;
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 20px;
+    }
+
+    .gal-container .modal.fade .modal-dialog {
+        -webkit-transform: scale(0.1);
+        -moz-transform: scale(0.1);
+        -ms-transform: scale(0.1);
+        transform: scale(0.1);
+        top: 100px;
+        opacity: 0;
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+
+    .gal-container .modal.fade.in .modal-dialog {
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+        -webkit-transform: translate3d(0, -100px, 0);
+        transform: translate3d(0, -100px, 0);
+        opacity: 1;
+    }
+
+    @media (min-width: 768px) {
+        .gal-container .modal-dialog {
+            width: 55%;
+            margin: 50 auto;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .gal-container .modal-content {
+            height: 250px;
+        }
+    }
+
+    /* Footer Style */
+    i.red {
+        color: #BC0213;
+    }
+
+    footer {
+        font-family: 'Quicksand', sans-serif;
+    }
+
+    footer a, footer a:hover {
+        color: #88C425;
+    }
+
+    .searchPanel {
+        background-color: #D3D3D3;
+    }
+
+    header {
+        padding: 50px 0;
+    }
+
+    header h1 {
+        color: white;
+        text-shadow: 1px 3px 4px rgba(0, 0, 0, 0.4);
+        text-align: center;
+        font-size: 40px;
+        letter-spacing: 0.4px;
+        font-family: "Raleway", sans-serif;
+    }
+
+    .container .thumbex {
+        margin: 10px 20px 30px;
+        width: 100%;
+        min-width: 250px;
+        max-width: 435px;
+        height: 300px;
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        overflow: hidden;
+        outline: 2px solid white;
+        outline-offset: -15px;
+        background-color: blue;
+        box-shadow: 5px 10px 40px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .container .thumbex .thumbnail {
+        overflow: hidden;
+        min-width: 250px;
+        height: 300px;
+        position: relative;
+        opacity: 0.88;
+        backface-visibility: hidden;
+        transition: all 0.4s ease-out;
+    }
+
+    .container .thumbex .thumbnail img {
+        position: absolute;
+        z-index: 1;
+        left: 50%;
+        top: 50%;
+        height: 115%;
+        width: auto;
+        transform: translate(-50%, -50%);
+        backface-visibility: hidden;
+    }
+
+    .container .thumbex .thumbnail span {
+        position: absolute;
+        z-index: 2;
+        top: calc(150px - 20px);
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 10px 50px;
+        margin: 0 45px;
+        text-align: center;
+        font-size: 24px;
+        color: white;
+        font-weight: 300;
+        font-family: "Raleway", sans-serif;
+        letter-spacing: 0.2px;
+        transition: all 0.3s ease-out;
+    }
+
+    .container .thumbex .thumbnail:hover {
+        backface-visibility: hidden;
+        transform: scale(1.15, 1.15);
+        opacity: 1;
+    }
+
+    .container .thumbex .thumbnail:hover span {
+        opacity: 0;
+    }
+
+    .list-group {
+        border-radius: 0;
+    }
+
+    .list-group .list-group-item {
+        background-color: transparent;
+        overflow: hidden;
+        border: 0;
+        border-radius: 0;
+        padding: 0 16px;
+    }
+
+    .list-group .list-group-item .row-picture,
+    .list-group .list-group-item .row-action-primary {
+        float: left;
+        display: inline-block;
+        padding-right: 16px;
+        padding-top: 8px;
+        color: #F5D338
+    }
+
+    .list-group .list-group-item .row-picture img,
+    .list-group .list-group-item .row-action-primary img,
+    .list-group .list-group-item .row-picture i,
+    .list-group .list-group-item .row-action-primary i,
+    .list-group .list-group-item .row-picture label,
+    .list-group .list-group-item .row-action-primary label {
+        display: block;
+        width: 56px;
+        height: 56px;
+    }
+
+    .list-group .list-group-item .row-picture img,
+    .list-group .list-group-item .row-action-primary img {
+        background: rgba(0, 0, 0, 0.1);
+        padding: 1px;
+    }
+
+    .list-group .list-group-item .row-picture img.circle,
+    .list-group .list-group-item .row-action-primary img.circle {
+        border-radius: 100%;
+    }
+
+    .list-group .list-group-item .row-picture i,
+    .list-group .list-group-item .row-action-primary i {
+        background: rgba(0, 0, 0, 0.25);
+        border-radius: 100%;
+        text-align: center;
+        line-height: 56px;
+        font-size: 20px;
+        color: white;
+    }
+
+    .list-group .list-group-item .row-picture label,
+    .list-group .list-group-item .row-action-primary label {
+        margin-left: 7px;
+        margin-right: -7px;
+        margin-top: 5px;
+        margin-bottom: -5px;
+    }
+
+    .list-group .list-group-item .row-content {
+        display: inline-block;
+        width: calc(100% - 92px);
+        min-height: 66px;
+    }
+
+    .list-group .list-group-item .row-content .action-secondary {
+        position: absolute;
+        right: 16px;
+        top: 16px;
+    }
+
+    .list-group .list-group-item .row-content .action-secondary i {
+        font-size: 20px;
+        color: rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+    }
+
+    .list-group .list-group-item .row-content .action-secondary ~ * {
+        max-width: calc(100% - 30px);
+    }
+
+    .list-group .list-group-item .row-content .least-content {
+        position: absolute;
+        right: 16px;
+        top: 0px;
+        color: rgba(0, 0, 0, 0.54);
+        font-size: 14px;
+    }
+
+    .list-group .list-group-item .list-group-item-heading {
+        color: rgba(0, 0, 0, 0.77);
+        font-size: 20px;
+        line-height: 29px;
+    }
+
+    .list-group .list-group-separator {
+        clear: both;
+        overflow: hidden;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .list-group .list-group-separator:before {
+        content: "";
+        width: calc(100% - 90px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        float: right;
+    }
+
+    .bg-profile {
+        background-color: #3498DB !important;
+        height: 150px;
+        z-index: 1;
+    }
+
+    .bg-bottom {
+        height: 100px;
+        margin-left: 30px;
+    }
+
+    .img-profile {
+        display: inline-block !important;
+        background-color: #fff;
+        border-radius: 6px;
+        margin-top: -50%;
+        padding: 1px;
+        vertical-align: bottom;
+        border: 2px solid #fff;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        color: #fff;
+        z-index: 2;
+    }
+
+    .row-float {
+        margin-top: -40px;
+    }
+
+    .explore a {
+        color: green;
+        font-size: 13px;
+        font-weight: 600
+    }
+
+    .twitter a {
+        color: #4099FF
+    }
+
+    .img-box {
+        box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23);
+        border-radius: 2px;
+        border: 0;
+    }
+
+    repeat {
+        display: block;
+    }
+
+    repeat[n="1"]:before {
+        content: "★";
+    }
+
+    repeat[n="2"]:before {
+        content: "★★";
+    }
+
+    repeat[n="3"]:before {
+        content: "★★★";
+    }
+
+    repeat[n="4"]:before {
+        content: "★★★★";
+    }
+
+    repeat[n="5"]:before {
+        content: "★★★★★";
+    }
+
+    .box a h2 {
+        font-size: 2rem;
+        color: #000000;
+        text-align: center;
+        margin-top: 125px;
+    }
+
+    .trip-datepicker-form {
+        width: 100%;
+        display: table;
+        margin-bottom: 11px;
+        float: left;
+    }
+
+    .browse-search .trip-datepicker-form input {
+        height: 35px;
+        margin-right: 3px;
+        box-shadow: none;
+    }
+
+    .trip-datepicker-form .form-control {
+        width: 100%;
+        margin: 0;
+        float: left;
+        background-color: #fff;
+    }
+
+    .trip-datepicker-form input {
+        border: 0;
+        border-radius: 0;
+        height: 40px;
+        margin-right: 12px;
+        font-size: 16px;
+    }
+
+    .tm-form-inner-des-search {
+        width: 100%;
+        display: table;
+        float: left;
+        box-sizing: border-box;
+        padding-right: 10px;
+        margin: 0;
+    }
+
+    .order-hotel {
+        width: 600px;
+        display: table-cell;
+        position: relative;
+        vertical-align: bottom;
+        box-sizing: border-box;
+        padding-right: 10px;
+    }
+
+    .order-go {
+        display: table-cell;
+        position: relative;
+        padding-right: 5px;
+        vertical-align: bottom;
+        box-sizing: border-box;
+    }
+
+    .order-back {
+        position: relative;
+        vertical-align: bottom;
+        padding-right: 0;
+        display: table-cell;
+        box-sizing: border-box;
+    }
+
+    .btn-search {
+        padding-left: 10px;
+        display: table-cell;
+        box-sizing: border-box;
+    }
+
+    .btn-yellow-btn {
+        width: 130px;
+        background-color: #F5D338;
+        border: medium none;
+        color: #5C4905;
+        font-size: 12px;
+        text-transform: uppercase;
+        box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.3);
+        padding: 12px 0px;
+        float: left;
+    }
+
+    .breadcrumb {
+        padding: 8px 15px;
+        margin-bottom: 20px;
+        list-style: none;
+        background-color: #f5f5f5;
+        border-radius: 4px;
+    }
+
+    .breadcrumb {
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .breadcrumb, .breadcrumb a {
+        color: #B37167;
+    }
+
+    .breadcrumb {
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .breadcrumb {
+        padding: 8px 15px;
+        margin-bottom: 20px;
+        list-style: none;
+        background-color: #f5f5f5;
+        border-radius: 4px;
+    }
+
+    .breadcrumb {
+        font-size: 14px;
+        background: 0 0;
+        padding: 0;
+        margin: 20px 0 5px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .breadcrumb > li + li:before, .slick-next:before {
+        content: "";
+    }
+
+    .breadcrumb > li + li:before {
+        font-family: FontAwesome;
+        color: #b37167;
+        margin: 0 5px 0 3px;
+    }
+
+    .breadcrumb > li span {
+        display: none;
+    }
+
+    .home-search .trip-datepicker-form {
+        margin: 0;
+        padding: 20px 30px 40px;
+        background-image: linear-gradient(to bottom, rgba(255, 255, 255, .9), #fff);
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .2);
+    }
+    @media screen and (min-width: 768px) {
+        .t-datepicker-days {
+            width: 600px !important;
+        }
+    }

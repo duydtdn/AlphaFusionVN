@@ -1,0 +1,66 @@
+{% extends 'base-site/base-side.html' %}
+{% load static %}
+{% block css_js_custom_head %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+{#    <link href="{% static 'css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">#}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
+    <link href="{% static 'css/flexslider.css' %}" rel="stylesheet">
+    <link href="{% static 'css/templatemo-style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/t-datepicker.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/t-datepicker-yellow.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/booking-page-style.css' %}" rel="stylesheet">
+    <style>
+        .t-check-out .t-datepicker-day{
+            left: 0 !important;
+        }
+    </style>
+{% endblock %}
+{% block page_content %}
+    {% include 'modules/carousel.html' %}
+    {% include 'pages/travel/block-booking-search.html' %}
+{#    {% include 'bookingWeb/home/components/block-places-new.html' %}#}
+{#    {% include 'bookingWeb/home/components/block-support-slogan.html' %}#}
+
+{% endblock %}
+{% block js_custom_foot %}
+<script>
+        function onSearchDestinationJson() {
+            destinationIdSelected = $('#destinationSelected').val();
+            startDay = $('#dateCheckIn').val();
+            endDay = $('#dateCheckOut').val();
+            if(destinationIdSelected == '' || startDay != '' && endDay == '') {
+                alert('Vui lòng chọn Địa điểm');
+            }else if(startDay != ''){
+                while(startDay.indexOf('/') != -1) {
+                startDay = startDay.replace('/', '-');
+                }
+                while(endDay.indexOf('/') != -1) {
+                    endDay = endDay.replace('/', '-');
+                }
+                location.href = "/search/rq-search-json/"+destinationIdSelected+"/" + startDay + "/" + endDay+ "/";
+            }else{
+                startDay = '-'
+                endDay = '-'
+                location.href = "/search/rq-search-json/"+destinationIdSelected+"/" + startDay + "/" + endDay+ "/";
+            }
+
+        };
+    </script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="{% static 'js/Place_stopExecutionOnTimeout.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/moment.js' %}"></script>                            <!-- moment.js -->
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>                    <!-- bootstrap js -->
+    <script type="text/javascript" src="{% static 'js/jquery.flexslider-min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/templatemo-script.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/js-search-load-href.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="{% static 'js/t-datepicker.min.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            // Call global the function
+            $('.t-datepicker').tDatePicker({
+                // options here
+            });
+        });
+    </script>
+{% endblock %}
