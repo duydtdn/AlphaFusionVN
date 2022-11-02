@@ -4,7 +4,7 @@
 body {
     color: #797979;
     background: #ffffff;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Audiowide', sans-serif;
 }
 
 h1,
@@ -168,6 +168,8 @@ a:focus {
     position: relative;
     transition: .5s;
     z-index: 999;
+    margin-bottom: 0px !important;
+
 }
 
 .navbar.nav-sticky {
@@ -177,7 +179,7 @@ a:focus {
     box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
     transition: .5s;
 }
-.navbar .navbar-brand {
+.navbar .navbar-brand-custom {
     margin: 0;
     color: #ffffff;
     font-size: 45px;
@@ -186,11 +188,11 @@ a:focus {
     text-transform: uppercase;
 }
 @media (max-width: 575.98px) {
-    .navbar .navbar-brand {
+    .navbar .navbar-brand-custom {
         font-size: 30px;
     }
 }
-.navbar .navbar-brand img {
+.navbar .navbar-brand-custom img {
     max-width: 100%;
     max-height: 40px;
 }

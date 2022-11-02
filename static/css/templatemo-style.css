@@ -23,7 +23,7 @@ a:focus {
 }
 
 /* Header & Nav */
-body { overflow-x: hidden; }
+/*body { overflow-x: hidden; }*/
 .tm-header {
 	background: #000000;
 	height: 80px;
@@ -135,7 +135,7 @@ body { overflow-x: hidden; }
 .tm-gray-bg { background-color: #E5E5E5; }
 .tm-home-section-1 {
 	position: relative;
-	top: -50px;
+	top: -250px;
 }
 .form-control {	border-radius: 0; }
 .form-control:focus {

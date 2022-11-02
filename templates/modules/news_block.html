@@ -14,7 +14,7 @@
                     <img src="/media/{{ news.hinh_anh }}" alt="Blog">
                 </div>
                 <div class="blog-content">
-                    <h2 class="blog-title tieu_de">{{ news.tieu_de }}</h2>
+                    <h2 class="blog-title tieu_de" ><a href="{{ news.get_absolute_url }}">{{ news.tieu_de }}</a></h2>
                     <div class="blog-meta">
                         <i class="fa fa-list-alt"></i>
                         <a href="">Category</a>
