@@ -1,0 +1,381 @@
+{% extends 'bookingWeb/base/booking-base-side.html' %}
+{% load static %}
+{% block css_js_custom_head %}
+    {% include 'bookingWeb/home/components/header.html' %}
+    {#    {% include 'bookingWeb/modules/reservation/components/css-reservation.html' %}#}
+    {#    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">#}
+    {#    <link href="{% static 'css/theme/css/t-datepicker.min.css' %}" rel="stylesheet" type="text/css">#}
+    {#    <link href="{% static 'css/theme/css/themes/t-datepicker-blue.css' %}" rel="stylesheet" type="text/css">#}
+    <link href="{% static 'css/css-reservation-step1.css' %}" rel="stylesheet" type="text/css">
+    <style>
+        .popup-edit-booking {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 100%; /* Could be more or less, depending on screen size */
+        }
+
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 25px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+{% block page_banner_menu %}
+    {% include 'bookingWeb/home/components/menu.html' %}
+{% endblock %}
+{% block page_content %}
+    <section class="vnt-checkout" style="margin:25px">
+        <div class="container no-padding-xs no-margin-xs">
+
+            <div class="row row-book">
+                <div class="col-sm-7 col-item-1">
+                    <section class="form-book">
+                        <div class="form-book__title">
+                            <h1>Thông tin đặt phòng</h1>
+                        </div>
+                        <div class="line-title"><span>Thông tin người đặt phòng</span></div>
+                        <!-- customer info -->
+                        <div class="row no-margin-xs">
+                            <div class="col-xs-4 col-name">
+                                <div class="form-group">
+                                    <label>Danh xưng</label>
+                                    <select class="form-control" name="checkout_gender" id="customerGender">
+                                        <option value="1">Anh</option>
+                                        <option value="2">Chị</option>
+                                        <option value="0" selected="selected">Khác</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-8 col-fullname">
+                                <div class="form-group">
+                                    <label>Họ và Tên</label>
+                                    <input class="form-control" id="customerFullName" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-margin-xs">
+                            <div class="col-sm-6 no-padding-xs">
+                                <div class="form-group">
+                                    <label>Số điện thoại</label>
+                                    <div class="input-group"><span class="input-group-addon">(+84)</span>
+                                        <input required="" placeholder="" class="form-control check-phone-elm"
+                                               id="customerPhoneNumber" maxlength="20" type="text">
+                                    </div>
+                                    <p class="p-phone" style="display: none"><i class="fa fa-exclamation-circle"></i>Số
+                                        điện
+                                        thoại đã được tự động đổi sang đầu số mới</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 no-padding-xs">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input required="" placeholder="" class="form-control" id="customerEmail"
+                                           type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkbox">
+                            <label for="user-book" ontouchstart="" class="label-filter control control--checkbox">
+                                <input id="user-book" class="needsclick fill_input i_am_the_receiver_room filterPrice"
+                                       value="chose" type="checkbox">Tôi là người nhận phòng.
+                                <div class="control__indicator"></div>
+                            </label>
+                        </div>
+                        <div class="form-book__group__container">
+
+                            <div class="form-book__group">
+                                <div class="line-title"><span>Thông tin người nhận phòng 1</span></div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Họ và Tên
+                                                <span>*</span>
+                                            </label>
+                                            <input class="form-control full_name_receiver input-receiver" required=""
+                                                   placeholder="" id="full_name_guest_1" maxlength="50" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Số điện thoại
+                                                <span>*</span>
+                                            </label>
+                                            <div class="input-group"><span class="input-group-addon">(+84)</span>
+                                                <input class="form-control phone_number_receiver input-receiver check-phone-elm"
+                                                       required="" placeholder="" id="phone_number_guest_1"
+                                                       maxlength="20"
+                                                       type="text">
+                                            </div>
+                                            <p class="p-phone" style="display: none"><i
+                                                    class="fa fa-exclamation-circle"></i>Số điện thoại đã được tự động
+                                                đổi
+                                                sang đầu số mới</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- room receiver-->
+                        <!-- end room receiver-->
+                        <!--Thông tin người ở-->
+
+
+                        <a class="form-book__request">Yêu cầu thêm về phòng<i class="fa fa-angle-down"></i><i
+                                class="fa fa-angle-up hide"></i></a>
+                        <div class="form-book__special" style="display: none">
+                            <div class="room-require">
+                                <!--choose bed type-->
+
+                                <p>Yêu cầu đặc biệt</p>
+                                <form>
+
+                                    <div class="require-radio">
+
+                                        <input class="radio" name="radio_bed_type" id="bed_group_id_0" value="0"
+                                               type="radio">
+
+                                        <label for="bed_group_id_0">1 N/A</label>
+                                    </div>
+
+                                    <div class="require-radio">
+
+
+                                        <input class="radio" name="radio_bed_type" id="bed_group_id_1" value="1"
+                                               type="radio">
+
+
+                                        <label for="bed_group_id_1">1 Giường cỡ King (rộng 180 - 199cm)</label>
+                                    </div>
+
+                                    <div class="require-radio">
+
+
+                                        <input class="radio" name="radio_bed_type" id="bed_group_id_2" value="2"
+                                               type="radio">
+
+
+                                        <label for="bed_group_id_2">2 Giường đơn (rộng 90 - 130cm)</label>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                            <div class="form-textarea">
+                                <label>Ghi chú</label>
+                                <textarea id="customerRequest" placeholder=""></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-book__btn">
+                            <a id="continue_step1" class="btn btn-primary" onclick="continue_step1('{{ room_obj.id }}', '{{ des_obj.id }}')">Tiếp tục</a>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-sm-5 col-item-2" id="checkoutInfoRight">
+                    <!-- room info -->
+
+                    <section class="form-room">
+                        <div class="from-room-update">
+                            {% include "bookingWeb/modules/reservation/components/des_info_reservation.html" %}
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div id="popup-edit-booking" style="z-index: 999" class="popup-edit-booking">
+            <div class="modal-dialog edit-booking-modal">
+                <span id="close-modal" class="close-modal">&times;</span>
+                <div style="background-color: #fefefe;margin: 10% auto;padding: 20px;border: 1px solid #888;width: 100%;">
+                    <div class="modal-body">
+                        <section class="form-room">
+                            <div class="form-room__hotel">
+                                <img src="/media/{{ des_obj.avatar }}" class="form-room__hotel__photo">
+                                <div class="form-room__hotel__name">
+                                    <h3>
+                                        {{ des_obj.name }}
+                                        <div class="hotel-rating">
+                                            <span class="text-start"><i
+                                                    class="number"> {{ des_obj.level }} sao </i></span>
+                                            <span class="bg-star"><i class="fa fa-star"></i><i
+                                                    class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                                    class="fa fa-star"></i></span>
+                                            <!--<span title="Khách sạn 4 sao">4 <i class="fa fa-star yellow"></i><i class="fa fa-star yellow"></i><i class="fa fa-star yellow"></i><i class="fa fa-star yellow"></i></span>-->
+                                        </div>
+                                    </h3>
+                                </div>
+                                <div class="form-room__hotel__address"><i class="fa fa-map-marker"></i>
+                                    <p>{{ des_obj.address }}</p>
+                                </div>
+                            </div>
+                            {% include 'bookingWeb/modules/reservation/components/popup-edit-reservation.html' %}
+                            <div class="form-room__datepickr__btn">
+                                <a id="trip-submit-search-room" onclick="update_reservation_no_ajax('{{ room_obj.id }}', '{{ des_obj.id }}')"
+                                   data-tracking="HOTEL_DETAIL_UPDATE_SEARCH_INFO" class="btn btn-green">Cập nhật
+                                </a>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- popup room info-->
+    {#                <div id="popup-form-room" class="modal fade in" style="display: none; padding-right: 15px;">#}
+    {#                    <div class="modal-dialog form-room-modal">#}
+    {#                        <div class="modal-content">#}
+    {#                            <button type="button" data-dismiss="modal" class="close">×</button>#}
+    {#                            <div class="modal-body">#}
+    {#                                <section class="form-room">#}
+    {#                                    <div class="form-room__hotel">#}
+    {#                                        <img src="/media/{{ des_obj.avatar }}" class="form-room__hotel__photo">#}
+    {#                                        <div class="form-room__hotel__name">#}
+    {#                                            <h3>#}
+    {##}
+    {#                                                Hoi An Chic#}
+    {#                                                &nbsp;#}
+    {#                                                <div class="hotel-rating">#}
+    {##}
+    {##}
+    {#                                                    <span class="text-start"><i class="number"> 4 sao </i></span>#}
+    {#                                                    <span class="bg-star"><i class="fa fa-star"></i><i#}
+    {#                                                            class="fa fa-star"></i><i class="fa fa-star"></i><i#}
+    {#                                                            class="fa fa-star"></i></span>#}
+    {#                                                    <!--<span title="Khách sạn 4 sao">4 <i class="fa fa-star yellow"></i><i class="fa fa-star yellow"></i><i class="fa fa-star yellow"></i><i class="fa fa-star yellow"></i></span>-->#}
+    {##}
+    {##}
+    {#                                                </div>#}
+    {#                                            </h3>#}
+    {#                                        </div>#}
+    {#                                        <div class="form-room__hotel__address"><i class="fa fa-map-marker"></i>#}
+    {#                                            <p>Nguyễn Trãi, Cẩm Châu, Thành phố Hội An, Quảng Nam</p>#}
+    {#                                        </div>#}
+    {#                                    </div>#}
+    {#                                    <div class="row">#}
+    {#                                        <div class="col-sm-6">#}
+    {#                                            <div class="form-room__type">#}
+    {#                                                <p>1 x Double or Twin Chic</p>#}
+    {#                                            </div>#}
+    {#                                            <div class="form-room__info">#}
+    {#                                                <div class="form-room__info__line"><span>Ngày nhận phòng</span><span>19/11/2018</span>#}
+    {#                                                </div>#}
+    {#                                                <div class="form-room__info__line"><span>Ngày trả phòng</span><span>20/11/2018</span>#}
+    {#                                                </div>#}
+    {#                                                <div class="form-room__info__line"><span>Số đêm</span><span>1 đêm</span>#}
+    {#                                                </div>#}
+    {#                                                <div class="form-room__info__line"><span>Yêu cầu đặc biệt</span><span>1 N/A</span>#}
+    {#                                                </div>#}
+    {#                                                <div class="form-textarea">#}
+    {#                                                    <label>Ghi chú</label>#}
+    {#                                                    <textarea readonly="" placeholder=""></textarea>#}
+    {#                                                </div>#}
+    {#                                            </div>#}
+    {#                                        </div>#}
+    {#                                        <div class="col-sm-6">#}
+    {#                                            <div class="form-room__policy">#}
+    {#                                                <p>Chính sách huỷ phòng</p><span>Nếu hủy bỏ hoặc sửa đổi trước 3 ngày so với ngày đến khách sạn, bạn sẽ không bị tính phí. Nếu hủy bỏ hoặc sửa đổi muộn hơn 3 ngày trước ngày đến khách sạn, bạn sẽ phải trả toàn bộ giá trị đặt phòng. Nếu bạn vắng mặt, bạn sẽ phải trả toàn bộ giá trị đặt phòng.</span>#}
+    {#                                            </div>#}
+    {#                                        </div>#}
+    {#                                    </div>#}
+    {#                                </section>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {% include 'bookingWeb/home/components/footer.html' %}
+    <div id="loader" class="loader" style="display: none">
+        <img src="{% static "img/ajax-loader.gif" %}"/>
+    </div>
+
+{% endblock %}
+{% block js_custom_foot %}
+    <script>
+        var modal = document.getElementById("popup-edit-booking");
+        var btn = document.getElementById("editReservation");
+        var btnCloseModal = document.getElementById("close-modal");
+
+        btn.onclick = function () {
+            modal.style.display = "block";
+        };
+        btnCloseModal.onclick = function () {
+            modal.style.display = "none";
+        };
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        function update_reservation_no_ajax(m_id, des_id) {
+            var m_id = m_id;
+            var des_id = des_id;
+            var dateCheckIn = $("input[name='t-start']").val();
+            var dateCheckOut = $("input[name='t-end']").val();
+            if (dateCheckIn != '' && dateCheckOut == "null") {
+                var d = new Date();
+                var nextDay = new Date(d);
+                {#dateCheckIn = d.getDate() + '-' + d.getMonth() + '-' + d.getFullYear();#}
+                dateCheckIn = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+                nextDay.setDate(d.getDate() + 1);
+                dateCheckOut = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + nextDay.getDate();
+                location.href = "/reservation/" + des_id + "/" + m_id + "/" + dateCheckIn + "/" + dateCheckOut + "/";
+            } else if (dateCheckOut != "null") {
+                while (dateCheckIn.indexOf('/') != -1) {
+                    dateCheckIn = dateCheckIn.replace('/', '-');
+                    dateCheckIn = dateCheckIn.replace('/', '-');
+                }
+                while (dateCheckOut.indexOf('/') != -1) {
+                    dateCheckOut = dateCheckOut.replace('/', '-');
+                }
+                location.href = "/reservation/" + des_id + "/" + m_id + "/" + dateCheckIn + "/" + dateCheckOut + "/";
+            } else {
+                dateCheckIn = '-';
+                dateCheckOut = '-';
+                location.href = "/reservation/" + des_id + "/" + m_id + "/" + dateCheckIn + "/" + dateCheckOut + "/";
+            }
+        };
+        function continue_step1(m_id, des_id) {
+            var room_id = m_id;
+            var des_id = des_id;
+            var fullname = $('#full_name_guest_1').val();
+            var phone_number = $('#phone_number_guest_1').val();
+            var dateCheckIn = $("input[name='t-start']").val();
+            var dateCheckOut = $("input[name='t-end']").val();
+            if(valEqual(fullname,"")){
+                    alert('Bạn cần nhập thông tin');
+                    return;
+                }
+            dataJson = {
+                    'data':fullname
+            };
+        };
+    </script>
+{% endblock %}

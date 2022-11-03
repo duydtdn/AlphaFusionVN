@@ -1,0 +1,288 @@
+{% extends 'bookingWeb/base/booking-base-side.html' %}
+{% load static %}
+{% load django_bootstrap_breadcrumbs %}
+{% block css_js_custom_head %}
+    {% include 'bookingWeb/home/components/header.html' %}
+    {% include 'bookingWeb/home/components/css-foundation.min.html' %}
+    {% include 'bookingWeb/modules/destination/components/css-des-detail-info.html' %}
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css"
+          media="all"/>
+    <link href="{% static 'css/filter-list.css' %}" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js" type="text/javascript"></script>
+
+{% endblock %}
+{% block page_banner_menu %}
+    {% include 'bookingWeb/home/components/menu.html' %}
+{% endblock %}
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb place_name "/place/view-des-place-detail/" %}
+{% endblock %}
+{% block page_content %}
+    {% include 'bookingWeb/home/components/block-booking-search-customize.html' %}
+    <section>
+        <div class="row">
+            <div class="container">
+                <div class="col-lg-3 col-md-3 hidden-sm hidden-xs sidebar">
+                    {% include 'bookingWeb/home/components/block-filter-list.html' %}
+                    <input type="hidden" id="place_name" value="{{ place_name }}">
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 no-padding-xs">
+                    {% render_breadcrumbs %}
+                    <div id="list_des_by_place" class="row">
+                        {% include 'bookingWeb/modules/places/list_des_by_place.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% include 'bookingWeb/home/components/footer.html' %}
+{% endblock %}
+{% block js_custom_foot %}
+
+    <script type="text/javascript">
+            //alert ($("input[type='hidden'][name='t-end']").val());
+    </script>
+
+    <script>
+        var myClasses = document.getElementsByClassName("date-updater-content__dropdown-menu hotel-detail-dropdown-selected dropdown-menu-select-room-person");
+        $("span").click(function () {
+            alert("test")
+        });
+    </script>
+
+    <script type="text/javascript">
+        function ajaxTest() {
+
+            var request = $.ajax({
+                url: "/script/test-ajax/",
+                method: "POST",
+                async: false,
+                contentType: "application/json; charset=utf-8",
+                {#                        data: {id: menuId},#}
+                dataType: "json"
+            });
+
+            request.done(function (msg) {
+                str = '';
+                for (i = 0; i < msg.length; i++) {
+                    str += '<div class="row">\n' +
+                        '                <div class="col-xs-12 col-sm-3 col-md-3">\n' +
+                        '                    <a href="#">\n' +
+                        '                        <img src="/media/' + msg[i].name + '"\n' +
+                        '                             class="img-responsive img-box img-thumbnail">\n' +
+                        '                    </a>\n' +
+                        '                </div>\n' +
+                        '                <div class="col-xs-12 col-sm-9 col-md-9">\n' +
+                        '                    <div class="list-group">\n' +
+                        '                        <div class="list-group-item">\n' +
+                        '                            <div class="row-picture">\n' +
+                        '                                    <repeat n="' + msg[i].level + '"></repeat>\n' +
+                        '                            </div>\n' +
+                        '                            <div class="row-content">\n' +
+                        '                                <div class="list-group-item-heading">\n' +
+                        '                                    <a href="#" title="sintret">\n' +
+                        '                                        <small> ' + msg[i].name + '</small>\n' +
+                        '                                    </a>\n' +
+                        '                                </div>\n' +
+                        '                                <small>\n' +
+                        '                                    <i class="glyphicon glyphicon-time"></i>  <span class="twitter"> <i\n' +
+                        '                                        class="fa fa-twitter"></i> </span>\n' +
+                        '                                    <br>\n' +
+                        '                                    <span class="explore"><i class="glyphicon glyphicon-th"></i> {{ foo.services }}</span>\n' +
+                        '                                </small>\n' +
+                        '                            </div>\n' +
+                        '                        </div>\n' +
+                        '                    </div>\n' +
+                        '                    <h3 color="#e19200">Giá 1 đêm từ: </h3>\n' +
+                        '                </div>\n' +
+                        '            </div>';
+                }
+
+                $('#test_ajax').html(str);
+
+            });
+
+
+            request.fail(function (jqXHR, textStatus) {
+                alert("Request failed: " + textStatus);
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function play_slide(_min, _max, _step) {
+            var _min_value = _min.replace(/\./g, "");
+            var _max_value = _max.replace(/\./g, "");
+            $("#price-slider").slider({
+                max: parseInt(_max_value),
+                min: parseInt(_min_value),
+                range: true,
+                step: _step,
+                values: [parseInt(_min_value), parseInt(_max_value)],
+                slide: function (event, ui) {
+                    $("#price-amount-start").val(ui.values[0].toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1."));
+                    $("#price-amount-end").val(ui.values[1].toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1."));
+                    $("#price-slider").change(function () {
+                        if (ui.values[0] == _min_value)
+                            $("#price-slider .on-the-prev").css('margin-left', '0');
+                        else if (ui.values[0] == _max_value)
+                            $("#price-slider .on-the-prev").css('margin-left', '-30px');
+                        else
+                            $("#price-slider .on-the-prev").css('margin-left', '-9px');
+                        if (ui.values[1] == _max_value)
+                            $("#price-slider .on-the-next").css('margin-left', '-30px');
+                        else if (ui.values[1] == _min_value)
+                            $("#price-slider .on-the-next").css('margin-left', '0');
+                        else
+                            $("#price-slider .on-the-next").css('margin-left', '-9px');
+                    }).change();
+                }
+            });
+            $("#price-amount-start").val($("#price-slider").slider("values", 0).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1."));
+            $("#price-amount-end").val($("#price-slider").slider("values", 1).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1."));
+        }
+
+        $(document).ready(function () {
+            var _min, _max, _step;
+            if ($('#currency').val() == 'usd') {
+                _min = $('#min_usd').val().toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$10.");
+                _max = $('#max_usd').val().toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$10.");
+                _step = 10;
+            } else {
+                _min = $('#min').val().toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+                _max = $('#max').val().toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+                _step = 500;
+            }
+            play_slide(_min, _max, _step);
+            if ($("#price-amount-start").val() == _min)
+                $("#price-slider .on-the-prev").css('margin-left', '0');
+            else if ($("#price-amount-start").val() == _max)
+                $("#price-slider .on-the-prev").css('margin-left', '-30px');
+            else
+                $("#price-slider .on-the-prev").css('margin-left', '-9px');
+            if ($("#price-amount-end").val() == _max)
+                $("#price-slider .on-the-next").css('margin-left', '-30px');
+            else if ($("#price-amount-end").val() == _min)
+                $("#price-slider .on-the-next").css('margin-left', '0');
+            else
+                $("#price-slider .on-the-next").css('margin-left', '-9px');
+
+            $("#price-amount-start").on('keyup', function () {
+                var price_amount_start = $("#price-amount-start").val().replace(/\./g, "");
+                var price_amount_end = $("#price-amount-end").val().replace(/\./g, "");
+                if (event.which >= 37 && event.which <= 40) {
+                    event.preventDefault();
+                }
+                $(this).val(function (index, value) {
+                    return value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                });
+                $("#price-slider").slider('values', 0, price_amount_start);
+            });
+
+            $("#price-amount-end").on('keyup', function () {
+                var price_amount_start = $("#price-amount-start").val().replace(/\./g, "");
+                var price_amount_end = $("#price-amount-end").val().replace(/\./g, "");
+                if (event.which >= 37 && event.which <= 40) {
+                    event.preventDefault();
+                }
+                $(this).val(function (index, value) {
+                    return value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                });
+                $("#price-slider").slider('values', 1, price_amount_end);
+            });
+
+            $('a.usd').click(function () {
+                _min = $('#min_usd').val().toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+                _max = $('#max_usd').val().toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+                _step = 1;
+                play_slide(_min, _max, _step);
+            });
+            $('a.vnd').click(function () {
+                _min = $('#min').val().toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+                _max = $('#max').val().toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+                _step = 1;
+                play_slide(_min, _max, _step);
+            });
+        });
+
+        function rq_destination_fillter() {
+            place_name = $('#place_name').val();
+            var price_list = [];
+            var level_list = [];
+            $(".filterPrice:checked").each(function () {
+                price_list.push(this.value);
+            });
+            $(".filterStar:checked").each(function () {
+                level_list.push(this.value);
+            });
+            var dataJson = {
+                'price_list': price_list,
+                'level_list': level_list,
+                'place_name': place_name
+            };
+            var request = $.ajax({
+                url: '/search/rq-destination-fillter/',
+                method: "POST",
+                async: true,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(dataJson),
+                crossDomain: true,
+                dataType: "html"
+            });
+
+            request.done(function (msg) {
+                if (msg != 'error') {
+                    $('#list_des_by_place').html(msg);
+                }
+
+            });
+
+            request.fail(function (jqXHR, status) {
+                alert(status);
+            });
+        }
+
+        $(document).ready(function () {
+            $("#tripKeywords").autocomplete({
+                source: "/search/rq-autocomplete/",
+                minLength: 2,
+                open: function () {
+                    setTimeout(function () {
+                        $('.ui-autocomplete').css('z-index', 99);
+                    }, 0);
+                }
+            });
+        });
+
+        //AJAX Search
+        function onCustomizeSearchDestinationJson() {
+            tripKeywords = $('#tripKeywords').val();
+            var dataSearchJson = {
+                'tripKeywords': tripKeywords,
+            };
+            var request = $.ajax({
+                url: '/search/rq-search-destination-name/',
+                method: "POST",
+                async: true,
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(dataSearchJson),
+                crossDomain: true,
+                dataType: "html"
+            });
+
+            request.done(function (msg) {
+                {#console.log(msg);#}
+                if (msg != 'error') {
+                    $('#list_des_by_place').html(msg);
+                }
+
+            });
+
+            request.fail(function (jqXHR, status) {
+                alert(status);
+            });
+        };
+    </script>
+{% endblock %}

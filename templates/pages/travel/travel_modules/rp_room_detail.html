@@ -1,0 +1,151 @@
+{% load m_util %}
+{% include 'bookingWeb/modules/room/components/css-room-table.html' %}
+<table class="table-detail table-panel" style="border:0;">
+    <tr class="panel-collapse" style="">
+        <td class="pt-popup" colspan="6">
+            <div class="room-popup">
+                <div class="room-popup-slider">
+                    <div class="carousel slide" id="myCarousel_0" data-ride="carousel">
+                        <div class="carousel-inner">
+{#                            {% with room_detail.room_image|m_split:"%@#om%@#" as avartars %}#}
+                                {% for image in room_image %}
+                                    <div class="item">
+                                        <a><img class="report-image-trigger" src="/media/{{ image.room_image }}" width="330px"
+                                                itemprop="image" alt="khách sạn "></a>
+                                    </div>
+                                {% endfor %}
+{#                            {% endwith %}#}
+                        </div>
+                        <span class="left carousel-control" data-target="#myCarousel_0" data-slide="prev">
+                                        <i class="fa fa-angle-left"></i>
+                                    </span>
+                        <span class="right carousel-control" data-target="#myCarousel_0" data-slide="next">
+                                        <i class="fa fa-angle-right"></i>
+                                    </span>
+
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                $('.carousel-inner .item:first-child').addClass('active');
+                            });
+                        </script>
+                    </div>
+                </div>
+                <div class="room-popup-right">
+                    <div class="room-popup-title">
+                        <a class="tab-room-info active">Thông tin phòng</a>
+                    </div>
+                    <div class="room-popup-content">
+                        <div class="room-popup-content-info">
+                            <p>
+                                <span>Giường:</span>
+                                {{ bed_object.name }}
+                                {{ bed_object.size }}
+                            </p>
+
+                            <p><span>Diện tích phòng:</span>{{ room_detail.room_area }}</p>
+                            <p><span>Thiết bị trong phòng:</span>
+                                {{ room_detail.device }}
+                            </p>
+                            <p><span>Mô tả phòng:</span>
+                            <p>{{ room_detail.room_description }}</p>
+                        </div>
+                        <div class="room-popup-content-policies" style="display: none">
+                            <p>Nếu hủy bỏ hoặc sửa đổi trước 1 ngày so với ngày đến khách sạn, bạn sẽ không bị tính phí.
+                                Nếu
+                                hủy bỏ hoặc sửa đổi muộn hơn 1 ngày trước ngày đến khách sạn, bạn sẽ phải trả toàn bộ
+                                giá
+                                trị đêm đầu tiên. Nếu bạn vắng mặt, bạn sẽ phải trả toàn bộ giá trị đêm đầu tiên.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+{#<div class="room-group__collapse" style="display: none;" id="{{ m_id }}_row_detail" hidden="hidden">#}
+{#    <div class="table-detail">#}
+{#        <div class="room-popup">#}
+{#            <div class="room-popup-slider">#}
+{##}
+{##}
+{#                <div class="carousel slide" id="myCarousel_0" data-ride="carousel">#}
+{#                    <div class="carousel-inner">#}
+{##}
+{#                        {% with room_detail.room_image|m_split:"%@#om%@#" as avartars %}#}
+{#                                {% for avartar in avartars %}#}
+{#                                    <div class="item">#}
+{#                                        <a><img class="report-image-trigger" src="/media/{{ avartar }}" width="330px"#}
+{#                                                itemprop="image" alt="khách sạn "></a>#}
+{#                                    </div>#}
+{#                                {% endfor %}#}
+{#                            {% endwith %}#}
+{##}
+{#                    </div>#}
+{#                    <span class="left carousel-control" data-target="#myCarousel_0"#}
+{#                          data-slide="prev"><i#}
+{#                            class="fa fa-angle-left"></i></span><span class="right carousel-control"#}
+{#                                                                      data-target="#myCarousel_0"#}
+{#                                                                      data-slide="next"><i#}
+{#                        class="fa fa-angle-right"></i></span>#}
+{#                </div>#}
+{#                <script type="text/javascript">#}
+{#                    $(document).ready(function () {#}
+{#                        $('.carousel-inner .item:first-child').addClass('active');#}
+{#                    });#}
+{#                </script>#}
+{#                <div class="room-require">#}
+{#                    <p>Yêu cầu giường:</p>#}
+{##}
+{#                    <form class="form-bed-type" data-index="0">#}
+{##}
+{#                        <div class="require-radio">#}
+{##}
+{#                            <input class="radio radio_0" id="radio_0_0" type="radio" name="bed_type"#}
+{#                                   value="0" data-bedname="1 Giường cỡ King (rộng 180 - 199cm)">#}
+{##}
+{#                            <label for="radio_0_0">1 Giường cỡ King (rộng 180 - 199cm)</label>#}
+{#                        </div>#}
+{##}
+{#                        <div class="require-radio">#}
+{##}
+{#                            <input class="radio" id="radio_0_1" type="radio" name="bed_type"#}
+{#                                   value="1"#}
+{#                                   data-bedname="2 Giường đơn (rộng 90 - 130cm)">#}
+{##}
+{#                            <label for="radio_0_1">2 Giường đơn (rộng 90 - 130cm)</label>#}
+{#                        </div>#}
+{##}
+{#                    </form>#}
+{##}
+{##}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <div class="room-popup-right simplebar" style="overflow: auto;">#}
+{#                <div class="room-popup-content">#}
+{#                    <p><span>Giường:</span>#}
+{#                        {{ bed_object.name }}#}
+{#                        {{ bed_object.size }}#}
+{#                    </p>#}
+{##}
+{##}
+{#                    <p><span>Diện tích phòng:</span>{{ room_detail.room_area }}</p>#}
+{##}
+{##}
+{#                    <p><span>Hút thuốc#}
+{#                                    :</span>Không</p>#}
+{##}
+{##}
+{#                    <p><span>Thiết bị trong phòng:</span>{{ room_detail.device }}</p>#}
+{##}
+{##}
+{#                    <p><span>Mô tả phòng:</span>#}
+{#                    <p>{{ room_detail.room_description }}</p>#}
+{#                    <br></p>#}
+{##}
+{##}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
