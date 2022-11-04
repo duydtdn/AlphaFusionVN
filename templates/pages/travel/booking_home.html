@@ -19,7 +19,11 @@
 {% endblock %}
 {% block page_content %}
 {#    {% include 'modules/carousel.html' %}#}
-    {% include 'pages/travel/block-booking-search.html' %}
+    {% if des_list %}
+        {% include 'pages/travel/travel_modules/block-booking-search-customize.html' %}
+    {% else %}
+        {% include 'pages/travel/block-booking-search.html' %}
+    {% endif %}
 {#    {% include 'bookingWeb/home/components/block-places-new.html' %}#}
 {#    {% include 'bookingWeb/home/components/block-support-slogan.html' %}#}
 

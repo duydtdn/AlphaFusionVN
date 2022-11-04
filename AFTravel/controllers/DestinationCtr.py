@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
-import ModelCtr, RoomCtr
+from AFTravel.controllers import ModelCtr, RoomCtr
 from AFTravel.models import Destination, DesImage, DestinationServiceOther, Room, Place
 
 

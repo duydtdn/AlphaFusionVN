@@ -9,10 +9,9 @@ import json
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from DestinationCtr import view_des_place_detail
-from PlaceCtr import get_places
-from AFTravel.models import Destination, Place, DesImage, DestinationServiceOther
 
+from AFTravel.models import Destination, Place
+from AFTravel.controllers.PlaceCtr import get_places
 
 @csrf_exempt
 def rq_searchDestination_json(request, place_id, startday, endday):
@@ -30,7 +29,7 @@ def rq_searchDestination_json(request, place_id, startday, endday):
             # list_destination = Destination.objects.filter(id=place_id, post_date__range=[datetime_start, datetime_end])
             list_destination = Destination.objects.filter(place_id=place_id)
 
-    return render(request, '../templates/pages/travel/travel_modules/view-des-place-list.html',
+    return render(request, '../templates/pages/travel/booking_home.html',
                   {'place_name': place_name,
                    'des_list': list_destination,
                    'places': get_places(),

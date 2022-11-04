@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.urls import include
 from django.urls import path
 from AFTravel import views
-from controllers import SearchCtr
+from .controllers import SearchCtr
 
 app_name = "AFTravel"
 urlpatterns = [
