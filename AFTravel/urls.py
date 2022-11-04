@@ -9,5 +9,6 @@ urlpatterns = [
     # url(r'^$', views.index, name='index'),
     url(r'^$', views.TravelHome, name='index'),
     # path('search', views.SearchResultsView.as_view(), name='rq-search-by-keyword'),
-    url(r'^search/rq-search-json/(?P<place_id>[0-9]+)/(?P<startday>[0-9-]+)/(?P<endday>[0-9-]+)/$', SearchCtr.rq_searchDestination_json, name='rq-search-json'),
+    path('search/rq-search-json/<int:place_id>/<str:startday>/<str:endday>/', SearchCtr.rq_searchDestination_json, name='rq-search-json'),
+
 ]

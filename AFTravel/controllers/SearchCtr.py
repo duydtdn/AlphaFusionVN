@@ -19,6 +19,7 @@ def rq_searchDestination_json(request, place_id, startday, endday):
         place = Place.objects.get(id=place_id)
         place_id = place.id
         place_name = place.name
+        print(place_id, place_name, startday)
 
         if startday == '-':
             # datetime_start = datetime.datetime.now()  # datetime.strptime('1/1/2000', 'dd-mm-YY')

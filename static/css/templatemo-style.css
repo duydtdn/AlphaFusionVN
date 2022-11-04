@@ -135,7 +135,7 @@ a:focus {
 .tm-gray-bg { background-color: #E5E5E5; }
 .tm-home-section-1 {
 	position: relative;
-	top: 50px;
+	top: 100px;
 }
 .form-control {	border-radius: 0; }
 .form-control:focus {
@@ -660,7 +660,7 @@ hr { border-top: 1px solid #111010; }
 @media screen and (max-width: 1199px) {
 	.tm-banner-title { font-size: 50px; }
 	.tm-banner-subtitle { font-size: 30px; }
-	.tm-home-section-1 { top: 50px; }
+	.tm-home-section-1 { top: 100px; }
 	.tm-home-box-1 {
 		width: 300px;
 		height: 388px;
@@ -853,7 +853,7 @@ hr { border-top: 1px solid #111010; }
 	.tm-banner-link { 
 		padding: 10px 25px;
 	}
-	.tm-home-section-1 { top: 0; }
+	.tm-home-section-1 { top: 100px; }
 	.tm-home-box-3-img-container,
 	.tm-home-box-3-info {
 		float: none;

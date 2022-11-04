@@ -29,9 +29,8 @@ from django.conf.urls import url
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path("sitemap.xml", sitemap, {"sitemaps": {"cmspages": CMSSitemap}}),
-    url(r'^travel', include('AFTravel.urls')),
+    path('travel/', include('AFTravel.urls')),
     path('', include('AFWeb.urls')),
-    # path('en/', include('AFWeb.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
