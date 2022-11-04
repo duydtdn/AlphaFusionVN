@@ -21,6 +21,22 @@
 {#    {% include 'modules/carousel.html' %}#}
     {% if des_list %}
         {% include 'pages/travel/travel_modules/block-booking-search-customize.html' %}
+<section>
+        <div class="row">
+            <div class="container">
+                <div class="col-lg-3 col-md-3 hidden-sm hidden-xs sidebar">
+{#                    {% include 'bookingWeb/home/components/block-filter-list.html' %}#}
+                    <input type="hidden" id="place_name" value="{{ place_name }}">
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 no-padding-xs">
+{#                    {% render_breadcrumbs %}#}
+                    <div id="list_des_by_place" class="row">
+{#                        {% include 'bookingWeb/modules/places/list_des_by_place.html' %}#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     {% else %}
         {% include 'pages/travel/block-booking-search.html' %}
     {% endif %}
