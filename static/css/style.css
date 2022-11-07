@@ -531,7 +531,11 @@ a:focus {
         font-size: 35px;
     }
 }
-
+@media (min-width: 575.98px) {
+    .section-trip-datepicker-form{
+        padding-top: 10rem !important;
+    }
+}
 
 /*******************************/
 /********** Fact CSS ***********/
@@ -661,7 +665,6 @@ a:focus {
         height: auto;
     }
 }
-
 
 /*******************************/
 /********* Service CSS *********/

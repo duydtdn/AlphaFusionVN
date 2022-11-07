@@ -11,6 +11,7 @@
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/booking-page-style.css' %}" rel="stylesheet">
     <style>
         .t-check-out .t-datepicker-day{
             left: 0 !important;
@@ -25,13 +26,13 @@
         <div class="row">
             <div class="container">
                 <div class="col-lg-3 col-md-3 hidden-sm hidden-xs sidebar">
-{#                    {% include 'bookingWeb/home/components/block-filter-list.html' %}#}
+                    {% include 'pages/travel/travel_modules/block-filter-list.html' %}
                     <input type="hidden" id="place_name" value="{{ place_name }}">
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 no-padding-xs">
 {#                    {% render_breadcrumbs %}#}
                     <div id="list_des_by_place" class="row">
-{#                        {% include 'bookingWeb/modules/places/list_des_by_place.html' %}#}
+                        {% include 'pages/travel/travel_modules/list_des_by_place.html' %}
                     </div>
                 </div>
             </div>

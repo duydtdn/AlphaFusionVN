@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 from AFTravel.models import Room, BedCategory, RoomImage
-import ModelCtr
+from AFTravel.controllers import ModelCtr
 from AFTravel.m_models import RoomAst
 import html.parser
 

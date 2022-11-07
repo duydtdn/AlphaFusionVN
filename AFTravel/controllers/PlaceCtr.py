@@ -26,7 +26,7 @@ def view_des_place_list(request, place_id):
     place_name = place.name
     place_title = "Điểm đến tại " + place.name
 
-    return render(request, 'bookingWeb/modules/places/view-des-place-list.html',
+    return render(request, '../templates/pages/travel/travel_modules/view-des-place-list.html',
                   {
                       'des_list': des_list, 'place_name':place_name, 'place_title': place_title, 'places': get_places()
 

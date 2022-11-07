@@ -1,0 +1,391 @@
+{#{% load m_util %}#}
+    <section class="filterBlock no-padding">
+        <h4 class="block-title">Mức giá</h4>
+        <ul class="filterList">
+            <li>
+                <div class="checkbox" onclick="rq_destination_fillter()">
+                    <label class="label-filter control control--checkbox" for="price1">
+
+                        <input id="price1" type="checkbox" value="500k" name="filterPrice" class="filterPrice">
+                        Dưới 500.000đ
+                        <div class="control__indicator"></div>
+                    </label>
+                </div>
+                {#                <span class="prNumber pull-right">130</span>#}
+            </li>
+            <li>
+                <div class="checkbox" onclick="rq_destination_fillter()">
+                    <label class="label-filter control control--checkbox" for="price2">
+
+                        <input id="price2" type="checkbox" value="500k-1m" name="filterPrice" class="filterPrice">
+                        500.000 - 1.000.000đ
+                        <div class="control__indicator"></div>
+                    </label>
+                </div>
+            </li>
+            <li>
+                <div class="checkbox" onclick="rq_destination_fillter()">
+                    <label class="label-filter control control--checkbox" for="price3">
+
+                        <input id="price3" type="checkbox" value="1m-2m" name="filterPrice" class="filterPrice">
+                        1.000.000 - 2.000.000đ
+                        <div class="control__indicator"></div>
+                    </label>
+                </div>
+            </li>
+            <li>
+                <div class="checkbox" onclick="rq_destination_fillter()">
+                    <label class="label-filter control control--checkbox" for="price4">
+                        <input id="price4" type="checkbox" value="2m-5m" name="filterPrice" class="filterPrice">
+                        2.000.000 - 5.000.000đ
+                        <div class="control__indicator"></div>
+                    </label>
+                </div>
+            </li>
+            <li>
+                <div class="checkbox" onclick="rq_destination_fillter()">
+                    <label class="label-filter control control--checkbox" for="price5">
+
+                        <input id="price5" type="checkbox" value="5m" name="filterPrice" class="filterPrice">
+                        Trên 5.000.000đ
+                        <div class="control__indicator"></div>
+                    </label>
+                </div>
+            </li>
+        </ul>
+        <div class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content" id="price-slider">
+            <div class="slider-background">&nbsp;</div>
+            <span class="ui-slider-handle ui-state-default ui-corner-all on-the-prev" tabindex="0"
+                  style="left: 0%; margin-left: 0px;">
+                            <i class="fa fa-angle-right"></i>
+                        </span>
+            <span class="ui-slider-handle ui-state-default ui-corner-all on-the-next" tabindex="0"
+                  style="left: 100%; margin-left: -30px;">
+                            <i class="fa fa-angle-left"></i>
+                        </span>
+            <div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 0%; width: 100%;"></div>
+        </div>
+        <div class="wrap-handle">
+            <input id="price-amount-start" type="text">
+            <input id="price-amount-end" type="text">
+            <input id="submit-range" type="submit" value="Lọc">
+            <div class="midle-line">&nbsp;</div>
+        </div>
+
+        <input type="hidden" id="currency" value="VNĐ">
+        <input type="hidden" id="max" value="20000000">
+        <input type="hidden" id="min" value="300000">
+        <input type="hidden" id="max_usd" value="588">
+        <input type="hidden" id="min_usd" value="3">
+    </section>
+
+    <section class="filterBlock no-padding">
+        <h4 class="block-title">Xếp hạng</h4>
+        <ul class="filterList">
+        {% with '5 4 3 2 1' as list %}
+            {% for star in list.split %}
+                <li>
+                    <div class="checkbox" onclick="rq_destination_fillter()">
+                        <label class="label-filter control control--checkbox" for="star{{ star }}">
+
+                            <input id="star{{ star }}" type="checkbox" value="{{ star }}" name="filterStar" class="filterStar">
+                                {% for foo in star %}
+                                    <i class="fa fa-star"></i>
+                                {% endfor %}
+                            <div class="control__indicator"></div>
+                        </label>
+                    </div>
+                </li>
+            {% endfor %}
+        {% endwith %}
+        </ul>
+    {##}
+    {#                <section class="filterBlock no-padding">#}
+    {#                    <h2 class="block-title">Loại chỗ ở</h2>#}
+    {#                    <ul class="filterList">#}
+    {##}
+    {#                            <li>#}
+    {#                                <div class="checkbox">#}
+    {#                                    <label class="label-filter control control--checkbox" for="type_hotel">#}
+    {##}
+    {#                                            <input type="checkbox" name="filterType" id="type_hotel" class="filterType filterType-normal" value="hotel">#}
+    {##}
+    {#                                        Khách sạn#}
+    {#                                        <div class="control__indicator"></div>#}
+    {#                                    </label>#}
+    {#                                </div>#}
+    {#                                <span class="prNumber pull-right">569</span>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li>#}
+    {#                                <div class="checkbox">#}
+    {#                                    <label class="label-filter control control--checkbox" for="type_apartment">#}
+    {##}
+    {#                                            <input type="checkbox" name="filterType" id="type_apartment" class="filterType filterType-normal" value="apartment">#}
+    {##}
+    {#                                        Căn hộ#}
+    {#                                        <div class="control__indicator"></div>#}
+    {#                                    </label>#}
+    {#                                </div>#}
+    {#                                <span class="prNumber pull-right">42</span>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li>#}
+    {#                                <div class="checkbox">#}
+    {#                                    <label class="label-filter control control--checkbox" for="type_guesthouse">#}
+    {##}
+    {#                                            <input type="checkbox" name="filterType" id="type_guesthouse" class="filterType filterType-normal" value="guesthouse">#}
+    {##}
+    {#                                        Nhà khách#}
+    {#                                        <div class="control__indicator"></div>#}
+    {#                                    </label>#}
+    {#                                </div>#}
+    {#                                <span class="prNumber pull-right">1</span>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li>#}
+    {#                                <div class="checkbox">#}
+    {#                                    <label class="label-filter control control--checkbox" for="type_hostel">#}
+    {##}
+    {#                                            <input type="checkbox" name="filterType" id="type_hostel" class="filterType filterType-normal" value="hostel">#}
+    {##}
+    {#                                        Nhà trọ#}
+    {#                                        <div class="control__indicator"></div>#}
+    {#                                    </label>#}
+    {#                                </div>#}
+    {#                                <span class="prNumber pull-right">49</span>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li>#}
+    {#                                <div class="checkbox">#}
+    {#                                    <label class="label-filter control control--checkbox" for="type_homestay">#}
+    {##}
+    {#                                            <input type="checkbox" name="filterType" id="type_homestay" class="filterType filterType-normal" value="homestay">#}
+    {##}
+    {#                                        Chỗ nghỉ nhà dân#}
+    {#                                        <div class="control__indicator"></div>#}
+    {#                                    </label>#}
+    {#                                </div>#}
+    {#                                <span class="prNumber pull-right">18</span>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li>#}
+    {#                                <div class="checkbox">#}
+    {#                                    <label class="label-filter control control--checkbox" for="type_aparthotel">#}
+    {##}
+    {#                                            <input type="checkbox" name="filterType" id="type_aparthotel" class="filterType filterType-normal" value="aparthotel">#}
+    {##}
+    {#                                        Khách sạn căn hộ#}
+    {#                                        <div class="control__indicator"></div>#}
+    {#                                    </label>#}
+    {#                                </div>#}
+    {#                                <span class="prNumber pull-right">7</span>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li>#}
+    {#                                <div class="checkbox">#}
+    {#                                    <label class="label-filter control control--checkbox" for="type_villa">#}
+    {##}
+    {#                                            <input type="checkbox" name="filterType" id="type_villa" class="filterType filterType-normal" value="villa">#}
+    {##}
+    {#                                        Biệt thự#}
+    {#                                        <div class="control__indicator"></div>#}
+    {#                                    </label>#}
+    {#                                </div>#}
+    {#                                <span class="prNumber pull-right">3</span>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li>#}
+    {#                                <div class="checkbox">#}
+    {#                                    <label class="label-filter control control--checkbox" for="type_resort">#}
+    {##}
+    {#                                            <input type="checkbox" name="filterType" id="type_resort" class="filterType filterType-normal" value="resort">#}
+    {##}
+    {#                                        Resort#}
+    {#                                        <div class="control__indicator"></div>#}
+    {#                                    </label>#}
+    {#                                </div>#}
+    {#                                <span class="prNumber pull-right">1</span>#}
+    {#                            </li>#}
+    {##}
+    {#                    </ul>#}
+    {#                </section>#}
+    {##}
+    {##}
+    {##}
+    
+    {##}
+    {#                <section class="filterBlock">#}
+    {#                    <h2 class="block-title border-bottom">Tin liên quan </h2>#}
+    {#                    <ul class="blogList">#}
+    {##}
+    {#                            <li class="clearfix">#}
+    {#                                <a href="https://www.vntrip.vn/cam-nang/cong-vien-hoa-hong-rose-park-66805" target="_blank" itemprop="url" rel="bookmark" title="Công viên hoa hồng Rose Park &amp;#8211; Địa điểm du lịch gần Hà Nội mới lạ, độc đáo">#}
+    {##}
+    {#                                        <img src="https://www.vntrip.vn/cam-nang/wp-content/uploads/2018/04/cong-vien-hoa-hong-rose-park-2-345x230.jpeg" alt="Công viên hoa hồng Rose Park &amp;#8211; Địa điểm du lịch gần Hà Nội mới lạ, độc đáo" height="50px" width="50px" itemprop="image">#}
+    {##}
+    {#                                </a>#}
+    {#                                <h4 class="media-heading" itemprop="name">#}
+    {#                                    <a href="https://www.vntrip.vn/cam-nang/cong-vien-hoa-hong-rose-park-66805" target="_blank" itemprop="url" rel="bookmark" title="Công viên hoa hồng Rose Park &amp;#8211; Địa điểm du lịch gần Hà Nội mới lạ, độc đáo">Công viên hoa hồng Rose Park – Địa điểm du lịch gần Hà Nội mới lạ, độc đáo&nbsp;<i class="fa fa-external-link"></i></a>#}
+    {#                                </h4>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li class="clearfix">#}
+    {#                                <a href="https://www.vntrip.vn/cam-nang/kinh-nghiem-du-lich-ban-xoi-moi-nhat-ban-phai-biet-66758" target="_blank" itemprop="url" rel="bookmark" title="Kinh nghiệm du lịch Bản Xôi mới nhất bạn phải biết">#}
+    {##}
+    {#                                        <img src="https://www.vntrip.vn/cam-nang/wp-content/uploads/2018/04/do-an-ban-xoi-345x230.jpg" alt="Kinh nghiệm du lịch Bản Xôi mới nhất bạn phải biết" height="50px" width="50px" itemprop="image">#}
+    {##}
+    {#                                </a>#}
+    {#                                <h4 class="media-heading" itemprop="name">#}
+    {#                                    <a href="https://www.vntrip.vn/cam-nang/kinh-nghiem-du-lich-ban-xoi-moi-nhat-ban-phai-biet-66758" target="_blank" itemprop="url" rel="bookmark" title="Kinh nghiệm du lịch Bản Xôi mới nhất bạn phải biết">Kinh nghiệm du lịch Bản Xôi mới nhất bạn phải biết&nbsp;<i class="fa fa-external-link"></i></a>#}
+    {#                                </h4>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li class="clearfix">#}
+    {#                                <a href="https://www.vntrip.vn/cam-nang/lo-dien-buc-tuong-xanh-moi-toanh-chang-kem-gi-tiem-banh-coi-xay-gio-da-lat-66690" target="_blank" itemprop="url" rel="bookmark" title="Lộ diện &amp;#8220;bức tường xanh&amp;#8221; mới toanh chẳng kém gì &amp;#8220;Tiệm bánh cối xay gió&amp;#8221; Đà Lạt">#}
+    {##}
+    {#                                        <img src="https://www.vntrip.vn/cam-nang/wp-content/uploads/2018/04/Untitled-26-345x230.png" alt="Lộ diện &amp;#8220;bức tường xanh&amp;#8221; mới toanh chẳng kém gì &amp;#8220;Tiệm bánh cối xay gió&amp;#8221; Đà Lạt" height="50px" width="50px" itemprop="image">#}
+    {##}
+    {#                                </a>#}
+    {#                                <h4 class="media-heading" itemprop="name">#}
+    {#                                    <a href="https://www.vntrip.vn/cam-nang/lo-dien-buc-tuong-xanh-moi-toanh-chang-kem-gi-tiem-banh-coi-xay-gio-da-lat-66690" target="_blank" itemprop="url" rel="bookmark" title="Lộ diện &amp;#8220;bức tường xanh&amp;#8221; mới toanh chẳng kém gì &amp;#8220;Tiệm bánh cối xay gió&amp;#8221; Đà Lạt">Lộ diện “bức tường xanh” mới toanh chẳng kém gì “Tiệm bánh cối xay gió” Đà Lạt&nbsp;<i class="fa fa-external-link"></i></a>#}
+    {#                                </h4>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li class="clearfix">#}
+    {#                                <a href="https://www.vntrip.vn/cam-nang/diem-danh-nhung-quan-chao-suon-ngon-nhat-ha-noi-66605" target="_blank" itemprop="url" rel="bookmark" title="Điểm danh Top 5 quán cháo sườn ngon nhất Hà Nội">#}
+    {##}
+    {#                                        <img src="https://www.vntrip.vn/cam-nang/wp-content/uploads/2018/04/chao-suon-hang-bo-345x230.jpg" alt="Điểm danh Top 5 quán cháo sườn ngon nhất Hà Nội" height="50px" width="50px" itemprop="image">#}
+    {##}
+    {#                                </a>#}
+    {#                                <h4 class="media-heading" itemprop="name">#}
+    {#                                    <a href="https://www.vntrip.vn/cam-nang/diem-danh-nhung-quan-chao-suon-ngon-nhat-ha-noi-66605" target="_blank" itemprop="url" rel="bookmark" title="Điểm danh Top 5 quán cháo sườn ngon nhất Hà Nội">Điểm danh Top 5 quán cháo sườn ngon nhất Hà Nội&nbsp;<i class="fa fa-external-link"></i></a>#}
+    {#                                </h4>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li class="clearfix">#}
+    {#                                <a href="https://www.vntrip.vn/cam-nang/cho-do-cu-ha-noi-2-66604" target="_blank" itemprop="url" rel="bookmark" title="Phiên chợ đồ cũ Hà Nội: Săn hàng độc lạ giá hời &amp;#8220;hết ý&amp;#8221;">#}
+    {##}
+    {#                                        <img src="https://www.vntrip.vn/cam-nang/wp-content/uploads/2018/04/cho-do-cu-hn_1-345x230.png" alt="Phiên chợ đồ cũ Hà Nội: Săn hàng độc lạ giá hời &amp;#8220;hết ý&amp;#8221;" height="50px" width="50px" itemprop="image">#}
+    {##}
+    {#                                </a>#}
+    {#                                <h4 class="media-heading" itemprop="name">#}
+    {#                                    <a href="https://www.vntrip.vn/cam-nang/cho-do-cu-ha-noi-2-66604" target="_blank" itemprop="url" rel="bookmark" title="Phiên chợ đồ cũ Hà Nội: Săn hàng độc lạ giá hời &amp;#8220;hết ý&amp;#8221;">Phiên chợ đồ cũ Hà Nội: Săn hàng độc lạ giá hời “hết ý”&nbsp;<i class="fa fa-external-link"></i></a>#}
+    {#                                </h4>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li class="clearfix">#}
+    {#                                <a href="https://www.vntrip.vn/cam-nang/ruong-bac-thang-o-ha-noi-66396" target="_blank" itemprop="url" rel="bookmark" title="Rủ nhau khám phá ruộng hoa bậc thang gây &amp;#8220;sốt sình sịch&amp;#8221; ở Hà Nội">#}
+    {##}
+    {#                                        <img src="https://www.vntrip.vn/cam-nang/wp-content/uploads/2018/04/ruong-bac-thang-ha-noi-1-345x230.jpg" alt="Rủ nhau khám phá ruộng hoa bậc thang gây &amp;#8220;sốt sình sịch&amp;#8221; ở Hà Nội" height="50px" width="50px" itemprop="image">#}
+    {##}
+    {#                                </a>#}
+    {#                                <h4 class="media-heading" itemprop="name">#}
+    {#                                    <a href="https://www.vntrip.vn/cam-nang/ruong-bac-thang-o-ha-noi-66396" target="_blank" itemprop="url" rel="bookmark" title="Rủ nhau khám phá ruộng hoa bậc thang gây &amp;#8220;sốt sình sịch&amp;#8221; ở Hà Nội">Rủ nhau khám phá ruộng hoa bậc thang gây “sốt sình sịch” ở Hà Nội&nbsp;<i class="fa fa-external-link"></i></a>#}
+    {#                                </h4>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li class="clearfix">#}
+    {#                                <a href="https://www.vntrip.vn/cam-nang/bao-tang-lich-su-quan-su-viet-nam-2-66436" target="_blank" itemprop="url" rel="bookmark" title="Bảo tàng lịch sử quân sự Việt Nam: Di tích lịch sử Hà Nội ngàn năm văn hiến">#}
+    {##}
+    {#                                        <img src="https://www.vntrip.vn/cam-nang/wp-content/uploads/2018/04/bao-tang-lich-su-quan-su-viet-nam-345x230.jpg" alt="Bảo tàng lịch sử quân sự Việt Nam: Di tích lịch sử Hà Nội ngàn năm văn hiến" height="50px" width="50px" itemprop="image">#}
+    {##}
+    {#                                </a>#}
+    {#                                <h4 class="media-heading" itemprop="name">#}
+    {#                                    <a href="https://www.vntrip.vn/cam-nang/bao-tang-lich-su-quan-su-viet-nam-2-66436" target="_blank" itemprop="url" rel="bookmark" title="Bảo tàng lịch sử quân sự Việt Nam: Di tích lịch sử Hà Nội ngàn năm văn hiến">Bảo tàng lịch sử quân sự Việt Nam: Di tích lịch sử Hà Nội ngàn năm văn hiến&nbsp;<i class="fa fa-external-link"></i></a>#}
+    {#                                </h4>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li class="clearfix">#}
+    {#                                <a href="https://www.vntrip.vn/cam-nang/kinh-nghiem-du-lich-ho-tien-sa-65207" target="_blank" itemprop="url" rel="bookmark" title="Kinh nghiệm đi hồ Tiên Sa Ba Vì cho ngày cuối tuần hoàn hảo">#}
+    {##}
+    {#                                        <img src="https://www.vntrip.vn/cam-nang/wp-content/uploads/2018/04/kinh-nghiem-du-lich-ho-tien-sa-4-345x230.jpg" alt="Kinh nghiệm đi hồ Tiên Sa Ba Vì cho ngày cuối tuần hoàn hảo" height="50px" width="50px" itemprop="image">#}
+    {##}
+    {#                                </a>#}
+    {#                                <h4 class="media-heading" itemprop="name">#}
+    {#                                    <a href="https://www.vntrip.vn/cam-nang/kinh-nghiem-du-lich-ho-tien-sa-65207" target="_blank" itemprop="url" rel="bookmark" title="Kinh nghiệm đi hồ Tiên Sa Ba Vì cho ngày cuối tuần hoàn hảo">Kinh nghiệm đi hồ Tiên Sa Ba Vì cho ngày cuối tuần hoàn hảo&nbsp;<i class="fa fa-external-link"></i></a>#}
+    {#                                </h4>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li class="clearfix">#}
+    {#                                <a href="https://www.vntrip.vn/cam-nang/co-mot-xu-hello-kitty-sieu-hot-sap-co-mat-tai-ha-noi-63316" target="_blank" itemprop="url" rel="bookmark" title="Có một xứ sở Hello Kitty siêu &amp;#8220;hot&amp;#8221; sắp có mặt tại Hà Nội!">#}
+    {##}
+    {#                                        <img src="https://www.vntrip.vn/cam-nang/wp-content/uploads/2018/03/yi-1-345x230.png" alt="Có một xứ sở Hello Kitty siêu &amp;#8220;hot&amp;#8221; sắp có mặt tại Hà Nội!" height="50px" width="50px" itemprop="image">#}
+    {##}
+    {#                                </a>#}
+    {#                                <h4 class="media-heading" itemprop="name">#}
+    {#                                    <a href="https://www.vntrip.vn/cam-nang/co-mot-xu-hello-kitty-sieu-hot-sap-co-mat-tai-ha-noi-63316" target="_blank" itemprop="url" rel="bookmark" title="Có một xứ sở Hello Kitty siêu &amp;#8220;hot&amp;#8221; sắp có mặt tại Hà Nội!">Có một xứ sở Hello Kitty siêu “hot” sắp có mặt tại Hà Nội!&nbsp;<i class="fa fa-external-link"></i></a>#}
+    {#                                </h4>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li class="clearfix">#}
+    {#                                <a href="https://www.vntrip.vn/cam-nang/kinh-nghiem-di-rung-bang-ta-65068" target="_blank" itemprop="url" rel="bookmark" title="Kinh nghiệm đi rừng Bằng Tạ Ba Vì chi tiết nhất 2018">#}
+    {##}
+    {#                                        <img src="https://www.vntrip.vn/cam-nang/wp-content/uploads/2018/04/kinh-nghiem-di-rung-bang-ta-345x230.jpg" alt="Kinh nghiệm đi rừng Bằng Tạ Ba Vì chi tiết nhất 2018" height="50px" width="50px" itemprop="image">#}
+    {##}
+    {#                                </a>#}
+    {#                                <h4 class="media-heading" itemprop="name">#}
+    {#                                    <a href="https://www.vntrip.vn/cam-nang/kinh-nghiem-di-rung-bang-ta-65068" target="_blank" itemprop="url" rel="bookmark" title="Kinh nghiệm đi rừng Bằng Tạ Ba Vì chi tiết nhất 2018">Kinh nghiệm đi rừng Bằng Tạ Ba Vì chi tiết nhất 2018&nbsp;<i class="fa fa-external-link"></i></a>#}
+    {#                                </h4>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li class="clearfix">#}
+    {#                                <a href="https://www.vntrip.vn/cam-nang/hoa-ban-o-ha-noi-no-roi-cung-nhau-len-do-chup-anh-ngay-thoi-60600" target="_blank" itemprop="url" rel="bookmark" title="Hoa ban ở Hà Nội nở rồi, cùng nhau lên đồ đi chụp ảnh ngay thôi!">#}
+    {##}
+    {#                                        <img src="https://www.vntrip.vn/cam-nang/wp-content/uploads/2018/03/chup-anh-hoa-ban-o-ha-noi-345x230.jpg" alt="Hoa ban ở Hà Nội nở rồi, cùng nhau lên đồ đi chụp ảnh ngay thôi!" height="50px" width="50px" itemprop="image">#}
+    {##}
+    {#                                </a>#}
+    {#                                <h4 class="media-heading" itemprop="name">#}
+    {#                                    <a href="https://www.vntrip.vn/cam-nang/hoa-ban-o-ha-noi-no-roi-cung-nhau-len-do-chup-anh-ngay-thoi-60600" target="_blank" itemprop="url" rel="bookmark" title="Hoa ban ở Hà Nội nở rồi, cùng nhau lên đồ đi chụp ảnh ngay thôi!">Hoa ban ở Hà Nội nở rồi, cùng nhau lên đồ đi chụp ảnh ngay thôi!&nbsp;<i class="fa fa-external-link"></i></a>#}
+    {#                                </h4>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li class="clearfix">#}
+    {#                                <a href="https://www.vntrip.vn/cam-nang/pho-bich-hoa-phung-hung-60506" target="_blank" itemprop="url" rel="bookmark" title="Đến phố bích hoạ Phùng Hưng thưởng thức những nét vẽ đầy nghệ thuật">#}
+    {##}
+    {#                                        <img src="https://www.vntrip.vn/cam-nang/wp-content/uploads/2018/03/pho-bich-hoa-phung-hung-345x230.jpg" alt="Đến phố bích hoạ Phùng Hưng thưởng thức những nét vẽ đầy nghệ thuật" height="50px" width="50px" itemprop="image">#}
+    {##}
+    {#                                </a>#}
+    {#                                <h4 class="media-heading" itemprop="name">#}
+    {#                                    <a href="https://www.vntrip.vn/cam-nang/pho-bich-hoa-phung-hung-60506" target="_blank" itemprop="url" rel="bookmark" title="Đến phố bích hoạ Phùng Hưng thưởng thức những nét vẽ đầy nghệ thuật">Đến phố bích hoạ Phùng Hưng thưởng thức những nét vẽ đầy nghệ thuật&nbsp;<i class="fa fa-external-link"></i></a>#}
+    {#                                </h4>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li class="clearfix">#}
+    {#                                <a href="https://www.vntrip.vn/cam-nang/cafe-skyline-ha-noi-58357" target="_blank" itemprop="url" rel="bookmark" title="Đợi người thương cafe một sớm Skyline Hà Nội!">#}
+    {##}
+    {#                                        <img src="https://www.vntrip.vn/cam-nang/wp-content/uploads/2018/03/skylinehani-345x230.png" alt="Đợi người thương cafe một sớm Skyline Hà Nội!" height="50px" width="50px" itemprop="image">#}
+    {##}
+    {#                                </a>#}
+    {#                                <h4 class="media-heading" itemprop="name">#}
+    {#                                    <a href="https://www.vntrip.vn/cam-nang/cafe-skyline-ha-noi-58357" target="_blank" itemprop="url" rel="bookmark" title="Đợi người thương cafe một sớm Skyline Hà Nội!">Đợi người thương cafe một sớm Skyline Hà Nội!&nbsp;<i class="fa fa-external-link"></i></a>#}
+    {#                                </h4>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li class="clearfix">#}
+    {#                                <a href="https://www.vntrip.vn/cam-nang/khu-sinh-thai-co-xanh-60155" target="_blank" itemprop="url" rel="bookmark" title="Bỏ túi kinh nghiệm du lịch khu sinh thái Cọ Xanh Đông Anh ngày cuối tuần">#}
+    {##}
+    {#                                        <img src="https://www.vntrip.vn/cam-nang/wp-content/uploads/2018/03/khu-du-lich-sinh-thai-co-xanh-345x230.jpg" alt="Bỏ túi kinh nghiệm du lịch khu sinh thái Cọ Xanh Đông Anh ngày cuối tuần" height="50px" width="50px" itemprop="image">#}
+    {##}
+    {#                                </a>#}
+    {#                                <h4 class="media-heading" itemprop="name">#}
+    {#                                    <a href="https://www.vntrip.vn/cam-nang/khu-sinh-thai-co-xanh-60155" target="_blank" itemprop="url" rel="bookmark" title="Bỏ túi kinh nghiệm du lịch khu sinh thái Cọ Xanh Đông Anh ngày cuối tuần">Bỏ túi kinh nghiệm du lịch khu sinh thái Cọ Xanh Đông Anh ngày cuối tuần&nbsp;<i class="fa fa-external-link"></i></a>#}
+    {#                                </h4>#}
+    {#                            </li>#}
+    {##}
+    {#                            <li class="clearfix">#}
+    {#                                <a href="https://www.vntrip.vn/cam-nang/kinh-nghiem-du-lich-ba-vi-59843" target="_blank" itemprop="url" rel="bookmark" title="Tổng hợp kinh nghiệm du lịch Ba Vì tự túc từ A &amp;#8211; Z">#}
+    {##}
+    {#                                        <img src="https://www.vntrip.vn/cam-nang/wp-content/uploads/2018/03/kinh-nghiem-di-ba-vi-345x230.jpg" alt="Tổng hợp kinh nghiệm du lịch Ba Vì tự túc từ A &amp;#8211; Z" height="50px" width="50px" itemprop="image">#}
+    {##}
+    {#                                </a>#}
+    {#                                <h4 class="media-heading" itemprop="name">#}
+    {#                                    <a href="https://www.vntrip.vn/cam-nang/kinh-nghiem-du-lich-ba-vi-59843" target="_blank" itemprop="url" rel="bookmark" title="Tổng hợp kinh nghiệm du lịch Ba Vì tự túc từ A &amp;#8211; Z">Tổng hợp kinh nghiệm du lịch Ba Vì tự túc từ A – Z&nbsp;<i class="fa fa-external-link"></i></a>#}
+    {#                                </h4>#}
+    {#                            </li>#}
+    {##}
+    {#                    </ul>#}
+    {#                </section>#}
+
+    <!-- filterBlock-->
+</section>
