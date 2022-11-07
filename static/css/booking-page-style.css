@@ -547,7 +547,7 @@ repeat[n="5"]:before {
 }
 
 .breadcrumb > li + li:before, .slick-next:before {
-    content: "";
+    content: "→";
 }
 
 .breadcrumb > li + li:before {

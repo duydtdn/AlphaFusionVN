@@ -1,5 +1,6 @@
 {% extends 'base-site/base-side.html' %}
 {% load static %}
+{% load django_bootstrap_breadcrumbs %}
 {% block css_js_custom_head %}
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 
@@ -18,6 +19,10 @@
         }
     </style>
 {% endblock %}
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb place_name "/place/view-des-place-detail/" %}
+{% endblock %}
 {% block page_content %}
 {#    {% include 'modules/carousel.html' %}#}
     {% if des_list %}
@@ -30,7 +35,7 @@
                     <input type="hidden" id="place_name" value="{{ place_name }}">
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12 no-padding-xs">
-{#                    {% render_breadcrumbs %}#}
+                    {% render_breadcrumbs %}
                     <div id="list_des_by_place" class="row">
                         {% include 'pages/travel/travel_modules/list_des_by_place.html' %}
                     </div>

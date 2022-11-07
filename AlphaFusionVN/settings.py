@@ -38,6 +38,7 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     'AFTravel',
     'AFWeb',
+    'django_bootstrap_breadcrumbs',
     'djangocms_admin_style',
     'django.contrib.auth',
     'django.contrib.contenttypes',
