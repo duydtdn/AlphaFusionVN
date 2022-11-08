@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-
+from django.db.models import Max
 from AFTravel.controllers import ModelCtr, RoomCtr
 from AFTravel.models import Destination, DesImage, DestinationServiceOther, Room, Place
 
@@ -16,6 +16,16 @@ def get_all_images_by_id(des_id):
 
 def get_des_by_id(des_id):
     return Destination.objects.filter(id=des_id)
+
+def get_newest_des():
+    try:
+        max_id = Destination.objects.all().aggregate(max_id=Max("id"))['max_id']
+        first = Destination.objects.get(pk=max_id)
+        second = Destination.objects.order_by("?").first()
+        return first, second
+    except Exception as e:
+        print(e)
+    return None
 
 @csrf_exempt
 def rq_searchDestination_json(request):

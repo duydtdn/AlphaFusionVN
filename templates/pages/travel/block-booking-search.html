@@ -98,7 +98,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group tm-yellow-gradient-bg text-center">
-                                    <button type="submit" name="submit" class="tm-yellow-btn">Check Now</button>
+                                    <button type="submit" name="submit" class="tm-yellow-btn">Tìm ngay</button>
                                 </div>
 {#                            </form>#}
                         </div>
@@ -109,22 +109,22 @@
 
         <div class="col-lg-4 col-md-4 col-sm-6">
             <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-center">
-                <img src="/media/{{ vouchers_first.voucher_image }}" class="img-responsive">
+                <img src="/media/{{ des_first.avatar }}" class="img-responsive">
                 <a href="#">
                     <div class="tm-green-gradient-bg tm-city-price-container">
-                        <span>{{ vouchers_first.destination.name }}</span>
-                        <span>{{ vouchers_first.sale_price }} VNĐ</span>
+                        <span>{{ des_first.name }}</span>
+                        <span>{{ des_first.basic_price }} VNĐ</span>
                     </div>
                 </a>
             </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-6">
             <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
-                <img src="/media/{{ voucher_second.voucher_image }}" alt="image" class="img-responsive">
+                <img src="/media/{{ des_second.avatar }}" alt="image" class="img-responsive">
                 <a href="#">
                     <div class="tm-red-gradient-bg tm-city-price-container">
-                        <span>{{ voucher_second.destination.name }}</span>
-                        <span>{{ voucher_second.sale_price }} VNĐ</span>
+                        <span>{{ des_second.name }}</span>
+                        <span>{{ des_second.basic_price }} VNĐ</span>
                     </div>
                 </a>
             </div>
